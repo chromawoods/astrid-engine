@@ -1,5 +1,9 @@
 {
   "name": "astrid-engine",
+  "author": {
+    "name": "Andreas Weber",
+    "email": "andreas@weber.nu"
+  },
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -20,7 +24,6 @@
     "nanostores": "^0.9.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-transition-group": "^4.4.5",
     "typescript": "^5.2.2"
   }
 }
