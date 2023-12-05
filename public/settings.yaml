@@ -1,0 +1,7 @@
+---
+debug: true
+gameTitle: The Great Estate
+entryRoomId: basement
+interactionTypes:
+  - look
+  - use

@@ -1,0 +1,94 @@
+{
+  "settings": {
+    "debug": true,
+    "gameTitle": "The Great Estate",
+    "entryRoomId": "basement",
+    "interactionTypes": ["look", "use"]
+  },
+  "objects": {
+    "spider": {
+      "name": "Huge Spider",
+      "description": "It's formidable in size, but would surely not withstand a good hit. Not gonna use my hands for that, though!",
+      "width": 60,
+      "x": 100,
+      "y": 300,
+      "image": "objects/spider.webp"
+    },
+    "baseballBat": {
+      "name": "Wooden Baseball Bat",
+      "description": "Ah, nothing like a good ol' bat. Swing away!",
+      "width": 150,
+      "x": 600,
+      "y": 240,
+      "image": "objects/baseball-bat.png",
+      "collectable": true
+    },
+    "letter": {
+      "name": "Old letter",
+      "description": "It's some form of elvish. I can't read it.",
+      "image": "objects/letter.png"
+    }
+  },
+  "rooms": {
+    "basement": {
+      "name": "The Basement",
+      "background": "rooms/basement.jpg",
+      "objects": ["spider", "baseballBat"],
+      "portals": [
+        {
+          "width": 150,
+          "height": 80,
+          "x": 300,
+          "y": 120,
+          "destination": "attic"
+        }
+      ]
+    },
+    "attic": {
+      "id": "attic",
+      "name": "Spooky Attic",
+      "background": "rooms/attic.jpg",
+      "portals": [
+        {
+          "width": 300,
+          "height": 100,
+          "x": 300,
+          "y": 400,
+          "destination": "basement"
+        }
+      ]
+    }
+  },
+  "inventory": ["letter"],
+  "scenarios": [
+    {
+      "event": "use",
+      "what": "baseballBat",
+      "results": [
+        {
+          "action": "print",
+          "what": "It feels nice and solid."
+        },
+        {
+          "checkpoint": "hasBaseballBat"
+        }
+      ]
+    },
+    {
+      "event": "enterRoom",
+      "what": "attic",
+      "results": [
+        {
+          "action": "print",
+          "what": "Not as cold as the basement, but still chill-inducing."
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "defaults": {
+      "look": "There's nothing special about it.",
+      "use": ["That doesn't work.", "No way.", "Better leave that alone."]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false
+    }
+}
