@@ -1,4 +1,8 @@
-import { $currentInteraction, $gameObjects } from '../utils/store'
+import {
+  $currentInteraction,
+  $gameObjects,
+  $selectedInventoryItem,
+} from '../utils/store'
 import type { Event, GameObject } from '../types'
 import { defaultUse, lookAt } from './dialog'
 import { error, info } from '../utils/logger'
@@ -26,6 +30,7 @@ export default function doInteraction(event: Event) {
       break
     case 'use':
       if (gameObject.isInInventory) {
+        $selectedInventoryItem.set(gameObject)
       } else if (gameObject.collectable) {
         collect(gameObject)
       } else {

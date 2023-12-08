@@ -2,7 +2,11 @@ import { useState, type MutableRefObject, useEffect } from 'react'
 import { info } from '../utils/logger'
 import { useStore } from '@nanostores/react'
 import { atom } from 'nanostores'
-import { $currentInteraction } from '../utils/store'
+import {
+  $currentInteraction,
+  $selectedInventoryItem,
+  $settings,
+} from '../utils/store'
 
 type CursorProps = {
   containerRef: MutableRefObject<HTMLElement | null>
@@ -13,8 +17,15 @@ const $cursorImage = atom<string>('')
 export const setCursorImage = (image: string) => $cursorImage.set(image)
 
 $currentInteraction.listen((ci) => {
-  const cursorImage = ci === 'none' ? '' : `interactions/${ci}.png`
-  setCursorImage(cursorImage)
+  if (!$selectedInventoryItem.get()) {
+    setCursorImage(
+      ci === 'none' ? '' : `${$settings.get().imageDir}interactions/${ci}.png`
+    )
+  }
+})
+
+$selectedInventoryItem.listen((item) => {
+  item && setCursorImage(item.image.inventory)
 })
 
 export default function CursorHint(props: CursorProps) {
@@ -44,7 +55,7 @@ export default function CursorHint(props: CursorProps) {
       style={{
         top: coords.top,
         left: coords.left,
-        backgroundImage: `url(images/${cursorImage})`,
+        backgroundImage: 'url(' + cursorImage + ')',
       }}
     ></div>
   ) : null

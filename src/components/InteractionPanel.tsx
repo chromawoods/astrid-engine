@@ -12,7 +12,9 @@ export default function InteractionPanel() {
           key={'interaction-' + i}
           className='ae-interaction'
           style={{
-            backgroundImage: `url(images/interactions/${i}.png)`,
+            backgroundImage: `url(${
+              $settings.get().imageDir
+            }interactions/${i}.png)`,
           }}
           onClick={() => {
             info('interaction selected:', i)

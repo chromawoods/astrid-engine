@@ -27,6 +27,10 @@ export default function doAction(event: Event) {
       showTextBox({ text: event.what as string, duration: true })
       break
 
+    case 'useItem':
+      showTextBox({ text: 'get correct dialog key', duration: true })
+      break
+
     default:
       error('unhandled event action', event)
   }

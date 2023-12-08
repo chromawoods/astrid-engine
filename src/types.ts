@@ -11,6 +11,7 @@ export type EventType =
   | 'collect'
   | 'look'
   | 'use'
+  | 'useItem'
   | 'talk'
   | 'print'
 
@@ -51,10 +52,16 @@ export type GameSettings = {
   canvasWidth: number
   entryRoomId: string
   gameTitle: string
+  imageDir: string
   interactionTypes: Interaction[]
   dataFileType?: 'yaml' | 'json'
   debug?: boolean
   defaultBackground?: string
+}
+
+export type GameObjectImage = {
+  default: string
+  inventory: string
 }
 
 export type GameObject = {
@@ -62,7 +69,7 @@ export type GameObject = {
   x?: number
   y?: number
   width?: number
-  image: string
+  image: GameObjectImage
   name?: string
   description?: string
   collectable?: boolean

@@ -16,7 +16,9 @@ objects:
     width: 150
     x: 600
     y: 240
-    image: objects/baseball-bat.png
+    image:
+      default: objects/baseball-bat.png
+      inventory: objects/baseball-bat-inventory.png
     collectable: true
   letter:
     name: Old letter
@@ -57,6 +59,13 @@ scenarios:
     actions:
       - id: print
         what: It feels nice and solid.
+  - event: useItem
+    what:
+      - baseballBat
+      - spider
+    actions:
+      - id: print
+        what: Take that!
   - event: enterRoom
     what: attic
     isCheckpoint: enterAttic
@@ -79,3 +88,4 @@ dialog:
       - That doesn't work.
       - No way.
       - Better leave that alone.
+    useItem: It doesn't work

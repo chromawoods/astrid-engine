@@ -2,6 +2,7 @@ import AlertError from './AlertError'
 import Portal from './Portal'
 import type { Portal as PortalType, Room } from '../types'
 import RoomObjects from './RoomObjects'
+import { $settings } from '../utils/store'
 
 export default function Room({ room }: { room: Room }) {
   if (room) {
@@ -9,7 +10,8 @@ export default function Room({ room }: { room: Room }) {
       <div
         className={`ae-room ${room.id}`}
         style={{
-          backgroundImage: 'url(images/' + room.background + ')',
+          backgroundImage:
+            'url(' + $settings.get().imageDir + room.background + ')',
         }}
       >
         {room.objects && <RoomObjects objects={room.objects} />}

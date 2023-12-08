@@ -4,6 +4,7 @@ import { $checkpoints } from '../utils/store'
 import doAction from './action'
 import { info } from '../utils/logger'
 import { map } from 'nanostores'
+import { paramsAreEqual } from '../utils/helpers'
 
 const $scenarios = map<Scenario[]>([])
 
@@ -13,7 +14,7 @@ function getExecutableScenario(event: Event) {
   return $scenarios.get().find((s) => {
     if (
       s.event === event.id &&
-      s.what === event.what &&
+      paramsAreEqual(s.what, event.what) &&
       (!s.reached || s.repeat)
     ) {
       if (s.requiresCheckpoint) {
