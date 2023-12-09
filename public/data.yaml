@@ -10,16 +10,23 @@ objects:
     x: 100
     y: 300
     image: objects/spider.webp
+  basementBox:
+    name: Wooden box
+    width: 160
+    height: 60
+    x: 620
+    y: 300
   baseballBat:
     name: Wooden Baseball Bat
     description: Ah, nothing like a good ol' bat. Swing away!
     width: 150
-    x: 600
-    y: 240
+    x: 580
+    y: 280
     image:
       default: objects/baseball-bat.png
       inventory: objects/baseball-bat-inventory.png
     collectable: true
+    hidden: true
   letter:
     name: Old letter
     description: It's some form of elvish. I can't read it.
@@ -34,6 +41,7 @@ rooms:
     objects:
       - spider
       - baseballBat
+      - basementBox
     portals:
       - width: 150
         height: 80
@@ -53,6 +61,15 @@ rooms:
 
 # Describe scenarios
 scenarios:
+  - event: look
+    what: basementBox
+    actions:
+      - id: hideObject
+        what: basementBox
+      - id: showObject
+        what: baseballBat
+      - id: print
+        what: Well well well, what have we here?
   - event: use
     what: baseballBat
     checkpoint: hasBaseballBat
@@ -66,6 +83,10 @@ scenarios:
     actions:
       - id: print
         what: Take that!
+      - id: hideObject
+        what: spider
+      - id: hideObject
+        what: baseballBat
   - event: enterRoom
     what: attic
     isCheckpoint: enterAttic

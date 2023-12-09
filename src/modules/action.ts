@@ -2,6 +2,7 @@ import { $nextView, $settings } from '../utils/store'
 import type { Event, Interaction } from '../types'
 import doInteraction, { resetInteraction } from './interaction'
 import { error, info } from '../utils/logger'
+import { hideGameObject, showGameObject } from '../utils/storeHelpers'
 import { hideTextBox, showTextBox } from '../components/TextBox'
 
 export default function doAction(event: Event) {
@@ -28,7 +29,15 @@ export default function doAction(event: Event) {
       break
 
     case 'useItem':
-      showTextBox({ text: 'get correct dialog key', duration: true })
+      //showTextBox({ key: 'defaults.useItem', duration: true })
+      break
+
+    case 'hideObject':
+      hideGameObject(event.what as string)
+      break
+
+    case 'showObject':
+      showGameObject(event.what as string)
       break
 
     default:

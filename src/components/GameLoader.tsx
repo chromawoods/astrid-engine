@@ -15,18 +15,21 @@ function normalizeGameObjects(obj: GameObjects) {
 
   for (const prop in obj) {
     const gameObject = obj[prop]
-    if (typeof gameObject.image === 'string') {
-      gameObject.image = {
-        default: imageDir + gameObject.image,
-        inventory: imageDir + gameObject.image,
+
+    if (gameObject.image) {
+      if (typeof gameObject.image === 'string') {
+        gameObject.image = {
+          default: imageDir + gameObject.image,
+          inventory: imageDir + gameObject.image,
+        }
+      } else {
+        gameObject.image.default = imageDir + gameObject.image.default
+        gameObject.image.inventory =
+          imageDir +
+          (gameObject.image.inventory
+            ? gameObject.image.inventory
+            : gameObject.image.default)
       }
-    } else {
-      gameObject.image.default = imageDir + gameObject.image.default
-      gameObject.image.inventory =
-        imageDir +
-        (gameObject.image.inventory
-          ? gameObject.image.inventory
-          : gameObject.image.default)
     }
   }
 

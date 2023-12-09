@@ -14,6 +14,8 @@ export type EventType =
   | 'useItem'
   | 'talk'
   | 'print'
+  | 'hideObject'
+  | 'showObject'
 
 export type Event = {
   id: EventType
@@ -69,7 +71,8 @@ export type GameObject = {
   x?: number
   y?: number
   width?: number
-  image: GameObjectImage
+  height?: number
+  image?: GameObjectImage
   name?: string
   description?: string
   collectable?: boolean

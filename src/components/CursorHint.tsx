@@ -25,7 +25,7 @@ $currentInteraction.listen((ci) => {
 })
 
 $selectedInventoryItem.listen((item) => {
-  item && setCursorImage(item.image.inventory)
+  setCursorImage((item && !item.hidden && item.image?.inventory) || '')
 })
 
 export default function CursorHint(props: CursorProps) {

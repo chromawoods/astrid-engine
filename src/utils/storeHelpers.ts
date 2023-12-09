@@ -1,4 +1,9 @@
-import { $gameObjects, $nextView, $rooms } from './store'
+import {
+  $gameObjects,
+  $nextView,
+  $rooms,
+  $selectedInventoryItem,
+} from './store'
 import type { GameData, GameObject } from '../types'
 
 import { info } from './logger'
@@ -27,4 +32,20 @@ export function setGameData(data: GameData) {
 
 export function getGameObject(id: string) {
   return $gameObjects.get()[id]
+}
+
+export function hideGameObject(id: string) {
+  const gameObject = getGameObject(id)
+  gameObject.hidden = true
+  $gameObjects.set({ gameObject, ...$gameObjects.get() })
+
+  if ($selectedInventoryItem.get()?.id === id) {
+    $selectedInventoryItem.set(null)
+  }
+}
+
+export function showGameObject(id: string) {
+  const gameObject = getGameObject(id)
+  gameObject.hidden = false
+  $gameObjects.set({ gameObject, ...$gameObjects.get() })
 }

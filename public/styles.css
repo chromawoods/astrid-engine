@@ -84,8 +84,11 @@ body {
 .ae-game-object {
   position: absolute;
   height: auto;
-  background-size: cover;
-  background-position: center;
+}
+
+.ae-game-object-image {
+  max-width: 100%;
+  height: auto;
 }
 
 .ae-portal {
@@ -109,8 +112,10 @@ body {
 
 .ae-inventory .ae-game-object {
   position: static;
-  width: 40px;
-  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  max-width: 40px;
+  max-height: 40px;
   background-size: cover;
   background-position: center;
   border: 1px solid #666;

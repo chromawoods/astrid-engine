@@ -4,7 +4,7 @@ import { computed } from 'nanostores'
 import { useStore } from '@nanostores/react'
 
 const $inventoryItems = computed($gameObjects, (objects) =>
-  Object.values(objects).filter((obj) => obj.isInInventory)
+  Object.values(objects).filter((obj) => obj.isInInventory && !obj.hidden)
 )
 
 export default function Inventory() {

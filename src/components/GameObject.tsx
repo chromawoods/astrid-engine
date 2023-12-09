@@ -24,11 +24,11 @@ export default function GameObject(props: GameObject) {
   }
 
   return (
-    <img
-      src={props.isInInventory ? image.inventory : image.default}
-      width={props.width}
+    <div
       className={`ae-game-object ${id}`}
       style={{
+        width: props.width,
+        height: props.height || 'auto',
         top: props.y,
         left: props.x,
       }}
@@ -39,6 +39,13 @@ export default function GameObject(props: GameObject) {
         currentInteraction === 'none' && name && hideTextBox()
       }}
       onClick={handleClick}
-    />
+    >
+      {image && (
+        <img
+          className='ae-game-object-image'
+          src={props.isInInventory ? image.inventory : image.default}
+        />
+      )}
+    </div>
   )
 }
