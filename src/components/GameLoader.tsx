@@ -46,16 +46,16 @@ function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
           const actionParams = a.split(' ')
           const actionId = actionParams.shift()
           if (actionId === 'print') {
-            return { id: actionId, what: [actionParams.join(' ')] } as Action
+            return { id: actionId, data: [actionParams.join(' ')] } as Action
           } else {
-            return { id: actionId, what: actionParams } as Action
+            return { id: actionId, data: actionParams } as Action
           }
         })
       : []
 
     return {
       ...s,
-      event: { id: eventId, what: eventParams },
+      event: { id: eventId, data: eventParams },
       actions: actions,
     } as Scenario
   })

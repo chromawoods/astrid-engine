@@ -19,7 +19,7 @@ export type EventType =
 
 export type Event = {
   id: EventType
-  what: string | string[]
+  data: string[]
 }
 
 export type SystemViews = 'ae_system_start'
@@ -30,7 +30,7 @@ export type ActionType = 'print'
 
 export type Action = {
   id: ActionType
-  what: string[]
+  data: string[]
 }
 
 export type Scenario = {

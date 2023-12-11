@@ -18,14 +18,14 @@ export default function doAction(event: Event) {
     case 'leaveRoom':
       resetInteraction()
       hideTextBox(true)
-      $nextView.set(event.what[1])
+      $nextView.set(event.data[1])
       break
 
     case 'enterRoom':
       break
 
     case 'print':
-      showTextBox({ text: event.what as string, duration: true })
+      showTextBox({ text: event.data[0], duration: true })
       break
 
     case 'useItem':
@@ -33,11 +33,11 @@ export default function doAction(event: Event) {
       break
 
     case 'hideObject':
-      hideGameObject(event.what as string)
+      hideGameObject(event.data[0])
       break
 
     case 'showObject':
-      showGameObject(event.what as string)
+      showGameObject(event.data[0])
       break
 
     default:

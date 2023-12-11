@@ -30,7 +30,7 @@ export function switchView(id: View) {
     transitionIn(() => {
       $viewContent.set(getViewContent(id))
       transitionOut(() => {
-        isRoom(id) && fireEvent({ id: 'enterRoom', what: id })
+        isRoom(id) && fireEvent({ id: 'enterRoom', data: [id] })
       })
     })
 }

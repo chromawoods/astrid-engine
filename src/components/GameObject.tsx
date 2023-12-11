@@ -13,13 +13,13 @@ export default function GameObject(props: GameObject) {
     if (selectedInventoryItem) {
       fireEvent({
         id: 'useItem',
-        what: [selectedInventoryItem.id, id],
+        data: [selectedInventoryItem.id, id],
       })
       $selectedInventoryItem.set(null)
     } else {
       fireEvent({
         id: currentInteraction as EventType,
-        what: id,
+        data: [id],
       })
     }
   }

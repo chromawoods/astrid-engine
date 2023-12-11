@@ -16,7 +16,7 @@ export default function Portal({
       onClick={() => {
         fireEvent({
           id: 'leaveRoom',
-          what: [$currentViewId.get(), destination],
+          data: [$currentViewId.get(), destination],
         })
       }}
     >

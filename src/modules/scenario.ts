@@ -14,7 +14,7 @@ function getExecutableScenario(event: Event) {
   return $scenarios.get().find((s) => {
     if (
       s.event.id === event.id &&
-      paramsAreEqual(s.event.what, event.what) &&
+      paramsAreEqual(s.event.data, event.data) &&
       (!s.reached || s.repeat)
     ) {
       if (s.requiresCheckpoint) {

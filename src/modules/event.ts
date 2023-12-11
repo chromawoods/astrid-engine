@@ -5,7 +5,7 @@ import { info } from '../utils/logger'
 import scenarioAction from './scenario'
 
 export default function fireEvent(event: Event) {
-  event.what = arrayify(event.what)
+  event.data = arrayify(event.data)
 
   info('fireEvent:', event)
 

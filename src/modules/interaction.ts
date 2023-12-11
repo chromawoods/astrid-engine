@@ -22,11 +22,11 @@ export function collect(gameObject: GameObject) {
 export default function doInteraction(event: Event) {
   info('doInteraction:', event.id)
 
-  const gameObject = getGameObject(event.what as string)
+  const gameObject = getGameObject(event.data[0])
 
   switch (event.id) {
     case 'look':
-      fireEvent({ id: 'print', what: lookAt(gameObject.description) })
+      fireEvent({ id: 'print', data: [lookAt(gameObject.description)] })
       break
     case 'use':
       if (gameObject.isInInventory) {
@@ -34,7 +34,7 @@ export default function doInteraction(event: Event) {
       } else if (gameObject.collectable) {
         collect(gameObject)
       } else {
-        fireEvent({ id: 'print', what: defaultUse() })
+        fireEvent({ id: 'print', data: [defaultUse()] })
       }
       break
     default:
