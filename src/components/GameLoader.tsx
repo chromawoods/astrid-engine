@@ -55,6 +55,8 @@ function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
 
     return {
       ...s,
+      preventDefault:
+        typeof s.preventDefault === 'undefined' ? true : s.preventDefault,
       event: { id: eventId, data: eventParams },
       actions: actions,
     } as Scenario
