@@ -6,25 +6,32 @@ import { useStore } from '@nanostores/react'
 
 const $textbox = atom<TextBoxType | null>(null)
 
-const $textboxHasActiveDuration = atom<boolean>(false)
+export let timer: number
 
 export function showTextBox(data: TextBoxType) {
-  if ($textboxHasActiveDuration.get() === false) {
+  if ($textbox.get()) {
+    if (data.prioritized) {
+      $textbox.set(null)
+      timer && clearTimeout(timer)
+      showTextBox(data)
+    }
+  } else {
     $textbox.set(data)
 
     if (data.duration) {
-      $textboxHasActiveDuration.set(true)
-      setTimeout(() => {
-        $textboxHasActiveDuration.set(false)
-        $textbox.set(null)
+      timer = setTimeout(() => {
+        hideTextBox(true)
       }, 2000 + data.text.length * 30)
     }
   }
 }
 
 export function hideTextBox(force: boolean = false) {
-  if ($textboxHasActiveDuration.get() === false || force) {
+  const textbox = $textbox.get()
+
+  if ((textbox && !textbox.duration) || force) {
     $textbox.set(null)
+    timer && clearTimeout(timer)
   }
 }
 

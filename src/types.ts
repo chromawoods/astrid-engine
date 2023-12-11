@@ -51,6 +51,7 @@ export type ScenarioData = Omit<Scenario, 'event' | 'actions'> & {
 export type TextBox = {
   text: string
   duration?: boolean
+  prioritized?: boolean
 }
 
 export type GameSettings = {

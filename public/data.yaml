@@ -67,6 +67,7 @@ scenarios:
       - showObject baseballBat
       - print Well well well, what have we here?
   - event: use baseballBat
+    preventDefault: false
     checkpoint: hasBaseballBat
     actions:
       - print It feels nice and solid.

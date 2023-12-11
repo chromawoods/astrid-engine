@@ -25,7 +25,7 @@ export default function doAction(event: Event) {
       break
 
     case 'print':
-      showTextBox({ text: event.data[0], duration: true })
+      showTextBox({ text: event.data[0], duration: true, prioritized: true })
       break
 
     case 'useItem':

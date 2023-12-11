@@ -3,6 +3,7 @@ import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
 import { useStore } from '@nanostores/react'
 import { hideTextBox, showTextBox } from './TextBox'
 import fireEvent from '../modules/event'
+import { resetInteraction } from '../modules/interaction'
 
 export default function GameObject(props: GameObject) {
   const { id, name, image } = props
@@ -22,6 +23,8 @@ export default function GameObject(props: GameObject) {
         data: [id],
       })
     }
+
+    resetInteraction()
   }
 
   return (
