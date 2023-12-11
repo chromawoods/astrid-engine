@@ -19,7 +19,10 @@ export default function GameObject(props: GameObject) {
       $selectedInventoryItem.set(null)
     } else {
       fireEvent({
-        id: currentInteraction as EventType,
+        id:
+          props.isInInventory && currentInteraction === 'none'
+            ? 'use'
+            : (currentInteraction as EventType),
         data: [id],
       })
     }
