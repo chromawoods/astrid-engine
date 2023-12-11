@@ -1,4 +1,4 @@
-import type { GameData, GameSettings } from '../types'
+import type { GameDataRaw, GameSettings } from '../types'
 
 import { $settings } from '../utils/store'
 import { load } from 'js-yaml'
@@ -14,7 +14,7 @@ async function fetchYaml(file: string) {
   return load(yamlData)
 }
 
-export async function getGameData(): Promise<GameData> {
+export async function getGameData(): Promise<GameDataRaw> {
   return await ($settings.get().dataFileType === 'yaml'
     ? fetchYaml('/data.yaml')
     : fetchJson('/data.json'))

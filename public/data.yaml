@@ -61,45 +61,29 @@ rooms:
 
 # Describe scenarios
 scenarios:
-  - event: look
-    what: basementBox
+  - event: look basementBox
     actions:
-      - id: hideObject
-        what: basementBox
-      - id: showObject
-        what: baseballBat
-      - id: print
-        what: Well well well, what have we here?
-  - event: use
-    what: baseballBat
+      - hideObject basementBox
+      - showObject baseballBat
+      - print Well well well, what have we here?
+  - event: use baseballBat
     checkpoint: hasBaseballBat
     actions:
-      - id: print
-        what: It feels nice and solid.
-  - event: useItem
-    what:
-      - baseballBat
-      - spider
+      - print It feels nice and solid.
+  - event: useItem baseballBat spider
     actions:
-      - id: print
-        what: Take that!
-      - id: hideObject
-        what: spider
-      - id: hideObject
-        what: baseballBat
-  - event: enterRoom
-    what: attic
+      - print Take that!
+      - hideObject spider
+      - hideObject baseballBat
+  - event: enterRoom attic
     isCheckpoint: enterAttic
     actions:
-      - id: print
-        what: Not as cold as the basement, but still chill-inducing.
-  - event: enterRoom
-    what: basement
+      - print Not as cold as the basement, but still chill-inducing.
+  - event: enterRoom basement
     requiresCheckpoint: enterAttic
     repeat: true
     actions:
-      - id: print
-        what: Oh no why did I go back down here?
+      - print Oh no why did I go back down here?
 
 # Describe dialog
 dialog:

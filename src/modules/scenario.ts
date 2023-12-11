@@ -13,8 +13,8 @@ export const setScenarios = (scenarios: Scenario[]) => $scenarios.set(scenarios)
 function getExecutableScenario(event: Event) {
   return $scenarios.get().find((s) => {
     if (
-      s.event === event.id &&
-      paramsAreEqual(s.what, event.what) &&
+      s.event.id === event.id &&
+      paramsAreEqual(s.event.what, event.what) &&
       (!s.reached || s.repeat)
     ) {
       if (s.requiresCheckpoint) {

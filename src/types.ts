@@ -30,18 +30,22 @@ export type ActionType = 'print'
 
 export type Action = {
   id: ActionType
-  what: string
+  what: string[]
 }
 
 export type Scenario = {
-  event: EventType
-  what: string
+  event: Event
   actions: Action[]
   isCheckpoint?: string
   requiresCheckpoint?: string | string[]
   preventDefault?: boolean
   reached?: boolean
   repeat?: boolean
+}
+
+export type ScenarioData = Omit<Scenario, 'event' | 'actions'> & {
+  event: string
+  actions: string[]
 }
 
 export type TextBox = {
@@ -114,4 +118,8 @@ export type GameData = {
   scenarios: Scenario[]
   rooms: Rooms
   dialog: Dialog
+}
+
+export type GameDataRaw = Omit<GameData, 'scenarios'> & {
+  scenarios: ScenarioData[]
 }

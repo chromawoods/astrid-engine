@@ -15,6 +15,7 @@ export default function GameObject(props: GameObject) {
         id: 'useItem',
         what: [selectedInventoryItem.id, id],
       })
+      $selectedInventoryItem.set(null)
     } else {
       fireEvent({
         id: currentInteraction as EventType,

@@ -1,10 +1,10 @@
+import type { Action, GameObjects, Scenario, ScenarioData } from '../types'
 import GlobalLoadingState, { setLoadingState } from './GlobalLoadingState'
 import { getGameData, getSettings } from '../modules/dataFetcher'
 import { useEffect, useState } from 'react'
 
 import { $settings } from '../utils/store'
 import Game from './Game'
-import type { GameObjects } from '../types'
 import { info } from '../utils/logger'
 import { setGameData } from '../utils/storeHelpers'
 
@@ -36,6 +36,31 @@ function normalizeGameObjects(obj: GameObjects) {
   return obj
 }
 
+function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
+  return obj.map((s) => {
+    const eventParams = s.event.split(' ')
+    const eventId = eventParams.shift() || ''
+
+    const actions: Action[] = s.actions
+      ? s.actions.map((a) => {
+          const actionParams = a.split(' ')
+          const actionId = actionParams.shift()
+          if (actionId === 'print') {
+            return { id: actionId, what: [actionParams.join(' ')] } as Action
+          } else {
+            return { id: actionId, what: actionParams } as Action
+          }
+        })
+      : []
+
+    return {
+      ...s,
+      event: { id: eventId, what: eventParams },
+      actions: actions,
+    } as Scenario
+  })
+}
+
 export default function GameLoader() {
   const [isGameLoaded, setIsGameLoaded] = useState(false)
 
@@ -53,7 +78,7 @@ export default function GameLoader() {
           objects: normalizeGameObjects(gameData.objects),
           rooms: gameData.rooms,
           dialog: gameData.dialog,
-          scenarios: gameData.scenarios,
+          scenarios: normalizeScenarioData(gameData.scenarios),
         })
 
         setLoadingState(false)
