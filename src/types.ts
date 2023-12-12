@@ -30,7 +30,7 @@ export type ActionType = 'print'
 
 export type Action = {
   id: ActionType
-  data: string[]
+  data: string[] | string[][]
 }
 
 export type Scenario = {
@@ -46,12 +46,6 @@ export type Scenario = {
 export type ScenarioData = Omit<Scenario, 'event' | 'actions'> & {
   event: string
   actions: string[]
-}
-
-export type TextBox = {
-  text: string
-  duration?: boolean
-  prioritized?: boolean
 }
 
 export type GameSettings = {
