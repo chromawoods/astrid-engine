@@ -1,7 +1,7 @@
 import type { EventType, GameObject } from '../types'
 import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
 import { useStore } from '@nanostores/react'
-import { hideTextBox, showTextBox } from './TextBox'
+import { clearTextBox, displayTextBox } from './TextBox'
 import fireEvent from '../modules/event'
 import { resetInteraction } from '../modules/interaction'
 
@@ -40,10 +40,10 @@ export default function GameObject(props: GameObject) {
         left: props.x,
       }}
       onMouseOver={() => {
-        currentInteraction === 'none' && name && showTextBox({ text: name })
+        currentInteraction === 'none' && name && displayTextBox({ text: name })
       }}
       onMouseOut={() => {
-        currentInteraction === 'none' && name && hideTextBox()
+        currentInteraction === 'none' && name && clearTextBox()
       }}
       onClick={handleClick}
     >

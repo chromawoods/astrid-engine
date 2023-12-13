@@ -1,9 +1,9 @@
 import { $nextView, $settings } from '../utils/store'
 import type { Event, Interaction } from '../types'
+import { clearTextBox, displayTextBox } from '../components/TextBox'
 import doInteraction, { resetInteraction } from './interaction'
 import { error, info } from '../utils/logger'
 import { hideGameObject, showGameObject } from '../utils/storeHelpers'
-import { hideTextBox, showTextBox } from '../components/TextBox'
 
 export default function doAction(event: Event) {
   info('doAction', event)
@@ -17,7 +17,7 @@ export default function doAction(event: Event) {
   switch (event.id) {
     case 'leaveRoom':
       resetInteraction()
-      hideTextBox(true)
+      clearTextBox(true)
       $nextView.set(event.data[1])
       break
 
@@ -25,11 +25,12 @@ export default function doAction(event: Event) {
       break
 
     case 'print':
-      showTextBox({ text: event.data[0], duration: true, prioritized: true })
+      displayTextBox({ text: event.data[0], duration: true, prioritized: true })
       break
 
     case 'useItem':
-      //showTextBox({ key: 'defaults.useItem', duration: true })
+      console.log('@TODO should show text...')
+      //displayTextBox({ key: 'defaults.useItem', duration: true })
       break
 
     case 'hideObject':

@@ -13,14 +13,15 @@ const $textbox = atom<TextBoxProps | null>(null)
 
 export let timer: number
 
-export function showTextBox(data: TextBoxProps) {
+export function displayTextBox(data: TextBoxProps) {
   data.text = arrayify(data.text)
+    .map((item) => item.split('//'))
+    .flat()
 
   if ($textbox.get()) {
     if (data.prioritized) {
-      $textbox.set(null)
-      timer && clearTimeout(timer)
-      showTextBox(data)
+      clearTextBox(true)
+      displayTextBox(data)
     }
   } else {
     const currentText = data.text.shift() || ''
@@ -29,17 +30,17 @@ export function showTextBox(data: TextBoxProps) {
 
     if (data.duration) {
       timer = setTimeout(() => {
-        hideTextBox(true)
+        clearTextBox(true)
 
         if (data.text.length) {
-          showTextBox(data)
+          displayTextBox(data)
         }
       }, 2000 + (currentText.length || 0) * 30)
     }
   }
 }
 
-export function hideTextBox(force: boolean = false) {
+export function clearTextBox(force: boolean = false) {
   const textbox = $textbox.get()
 
   if ((textbox && !textbox.duration) || force) {
