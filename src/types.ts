@@ -2,6 +2,13 @@ export type DeepObj = {
   [key: string]: any | DeepObj
 }
 
+export type HotkeyActionId = 'debugView'
+
+export type HotkeyAction = {
+  id: HotkeyActionId
+  toggle?: boolean
+}
+
 export type Interaction = 'none' | 'look' | 'use'
 
 export type EventType =
