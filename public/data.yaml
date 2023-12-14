@@ -29,9 +29,16 @@ objects:
     hidden: true
   letter:
     name: Old letter
-    description: It's some form of elvish. I can't read it.
+    description: It's written in some weird language. I can't read it.
     image: objects/letter.png
     isInInventory: true
+  chest:
+    name: Chest
+    description: It's locked.
+    width: 100
+    x: 430
+    y: 300
+    image: objects/chest.png
 
 # Describe rooms
 rooms:
@@ -52,6 +59,8 @@ rooms:
     id: attic
     name: Spooky Attic
     background: rooms/attic.jpg
+    objects:
+      - chest
     portals:
       - width: 300
         height: 100
@@ -68,7 +77,6 @@ scenarios:
       - print Well well well, what have we here?
   - event: use baseballBat
     preventDefault: false
-    checkpoint: hasBaseballBat
     actions:
       - print It feels nice and solid.
   - event: useItem baseballBat spider
