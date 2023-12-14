@@ -1,23 +1,11 @@
-import type { Dialog, Interaction } from '../types'
-
+import type { DeepObj } from '../types'
+import { getValueByKeyPath } from '../utils/helpers'
 import { map } from 'nanostores'
 
-const $dialog = map<Dialog>({ defaults: {} })
+const $dialog = map<DeepObj>({ defaults: {} })
 
-export const setDialog = (dialogData: Dialog) => $dialog.set(dialogData)
+export const setDialog = (dialogData: DeepObj) => $dialog.set(dialogData)
 
-export function getDefaultInteractionText(interaction: Interaction) {
-  const defaultText = $dialog.get().defaults[interaction]
-
-  return Array.isArray(defaultText)
-    ? defaultText[Math.floor(Math.random() * defaultText.length)]
-    : defaultText
-}
-
-export function lookAt(text: string | undefined) {
-  return text || getDefaultInteractionText('look') || ''
-}
-
-export function defaultUse() {
-  return getDefaultInteractionText('use') || ''
+export function getTextByKey(key: string): string {
+  return getValueByKeyPath($dialog.get(), key)
 }

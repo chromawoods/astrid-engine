@@ -4,11 +4,11 @@ import {
   $selectedInventoryItem,
 } from '../utils/store'
 import type { Event, GameObject } from '../types'
-import { defaultUse, lookAt } from './dialog'
 import { error, info } from '../utils/logger'
 
 import fireEvent from './event'
 import { getGameObject } from '../utils/storeHelpers'
+import { getTextByKey } from './dialog'
 
 export function collect(gameObject: GameObject) {
   gameObject.isInInventory = true
@@ -26,7 +26,10 @@ export default function doInteraction(event: Event) {
 
   switch (event.id) {
     case 'look':
-      fireEvent({ id: 'print', data: [lookAt(gameObject.description)] })
+      fireEvent({
+        id: 'print',
+        data: [gameObject.description || getTextByKey('defaults.look') || ''],
+      })
       break
     case 'use':
       if (gameObject.isInInventory) {
@@ -34,7 +37,7 @@ export default function doInteraction(event: Event) {
       } else if (gameObject.collectable) {
         collect(gameObject)
       } else {
-        fireEvent({ id: 'print', data: [defaultUse()] })
+        fireEvent({ id: 'print', data: [getTextByKey('defaults.use') || ''] })
       }
       break
     default:

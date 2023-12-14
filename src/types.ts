@@ -1,5 +1,5 @@
-export type Dialog = {
-  defaults: { [key in Interaction]?: string | string[] }
+export type DeepObj = {
+  [key: string]: any | DeepObj
 }
 
 export type Interaction = 'none' | 'look' | 'use'
@@ -14,6 +14,7 @@ export type EventType =
   | 'useItem'
   | 'talk'
   | 'print'
+  | 'printKey'
   | 'hideObject'
   | 'showObject'
 
@@ -112,7 +113,7 @@ export type GameData = {
   objects: GameObjects
   scenarios: Scenario[]
   rooms: Rooms
-  dialog: Dialog
+  dialog: DeepObj
 }
 
 export type GameDataRaw = Omit<GameData, 'scenarios'> & {
