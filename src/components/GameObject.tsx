@@ -47,6 +47,7 @@ export default function GameObject(props: GameObject) {
       }}
       onClick={handleClick}
     >
+      <span className='ae-debug-elem'>{id}</span>
       {image && (
         <img
           className='ae-game-object-image'

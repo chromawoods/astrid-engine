@@ -102,9 +102,33 @@ body {
   position: absolute;
 }
 
-.ae-debug .ae-game-object,
-.ae-debug .ae-portal {
+.ae-debug:before {
+  content: 'Press d to toggle debug view elements';
+  position: absolute;
+  pointer-events: none;
+  padding: 2px 4px;
+  color: var(--super-light);
+  font-size: 0.8rem;
+  background-color: rgba(255, 0, 255, 0.3);
+}
+
+.ae-debug-view .ae-game-object,
+.ae-debug-view .ae-portal {
   box-shadow: 0 0 0 1px magenta;
+}
+
+.ae-debug-elem {
+  position: absolute;
+  padding: 2px 4px;
+  color: var(--super-light);
+  font-size: 0.8rem;
+  background-color: rgba(255, 0, 255, 0.3);
+  pointer-events: none;
+  display: none;
+}
+
+.ae-debug-view .ae-debug-elem {
+  display: block;
 }
 
 .ae-inventory {

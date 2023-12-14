@@ -1,6 +1,6 @@
 import fireEvent from '../modules/event'
 import { type Portal as PortalType } from '../types'
-import { $currentViewId, $settings } from '../utils/store'
+import { $currentViewId } from '../utils/store'
 
 export default function Portal({
   x,
@@ -20,7 +20,7 @@ export default function Portal({
         })
       }}
     >
-      {$settings.get().debug && destination}
+      <span className='ae-debug-elem'>{destination}</span>
     </div>
   )
 }
