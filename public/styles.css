@@ -1,3 +1,10 @@
+:root {
+  --error: #c44;
+  --grey: #666;
+  --dark-grey: #222;
+  --super-light: #fafafa;
+}
+
 body,
 html {
   height: 100%;
@@ -18,7 +25,7 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #222;
+  background-color: var(--dark-grey);
   transition: opacity 0.5s;
   z-index: 50;
   opacity: 0;
@@ -33,8 +40,8 @@ body {
   display: inline-block;
   margin: 16px;
   padding: 8px 16px;
-  color: #fafafa;
-  background-color: #c44;
+  color: var(--super-light);
+  background-color: var(--error);
   border-radius: 3px;
 }
 
@@ -55,7 +62,7 @@ body {
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 40px;
-  color: #fafafa;
+  color: var(--super-light);
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -107,7 +114,7 @@ body {
   padding: 8px;
   display: flex;
   gap: 8px;
-  background-color: #fafafa;
+  background-color: var(--super-light);
 }
 
 .ae-inventory .ae-game-object {
@@ -118,9 +125,9 @@ body {
   max-height: 40px;
   background-size: cover;
   background-position: center;
-  border: 1px solid #666;
+  border: 1px solid var(--grey);
   border-radius: 3px;
-  background-color: #fafafa;
+  background-color: var(--super-light);
 }
 
 .ae-interaction-panel {
@@ -130,7 +137,7 @@ body {
   left: 0;
   display: flex;
   gap: 8px;
-  background-color: #fafafa;
+  background-color: var(--super-light);
 }
 
 .ae-interaction {
