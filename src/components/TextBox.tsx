@@ -35,7 +35,7 @@ export function displayTextBox(data: TextBoxProps) {
         if (data.text.length) {
           displayTextBox(data)
         }
-      }, 2000 + (currentText.length || 0) * 30)
+      }, 2000 + (currentText.length || 0) * 28)
     }
   }
 }

@@ -27,11 +27,18 @@ export default function doInteraction(event: Event) {
 
   switch (event.id) {
     case 'look':
-      displayTextBox({
-        text: [getTextByKey('defaults.look') || ''],
-        duration: true,
-        prioritized: true,
-      })
+      if (gameObject.description) {
+        fireEvent({
+          id: 'print',
+          data: [gameObject.description || getTextByKey('defaults.look') || ''],
+        })
+      } else {
+        displayTextBox({
+          text: [getTextByKey('defaults.look') || ''],
+          duration: true,
+          prioritized: true,
+        })
+      }
       break
     case 'use':
       if (gameObject.isInInventory) {

@@ -34,7 +34,7 @@ objects:
     isInInventory: true
   chest:
     name: Chest
-    description: It's locked.
+    description: It's locked...//What a surprise.
     width: 100
     x: 430
     y: 300
