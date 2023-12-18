@@ -98,8 +98,5 @@ scenarios:
 dialog:
   defaults:
     look: There's nothing special about it.
-    use:
-      - That doesn't work.
-      - No way.
-      - Better leave that alone.
+    use: Better leave that alone.
     useItem: It doesn't work

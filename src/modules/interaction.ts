@@ -6,6 +6,7 @@ import {
 import type { Event, GameObject } from '../types'
 import { error, info } from '../utils/logger'
 
+import { displayTextBox } from '../components/TextBox'
 import fireEvent from './event'
 import { getGameObject } from '../utils/storeHelpers'
 import { getTextByKey } from './dialog'
@@ -26,9 +27,10 @@ export default function doInteraction(event: Event) {
 
   switch (event.id) {
     case 'look':
-      fireEvent({
-        id: 'print',
-        data: [gameObject.description || getTextByKey('defaults.look') || ''],
+      displayTextBox({
+        text: [getTextByKey('defaults.look') || ''],
+        duration: true,
+        prioritized: true,
       })
       break
     case 'use':
@@ -37,7 +39,11 @@ export default function doInteraction(event: Event) {
       } else if (gameObject.collectable) {
         collect(gameObject)
       } else {
-        fireEvent({ id: 'print', data: [getTextByKey('defaults.use') || ''] })
+        displayTextBox({
+          text: [getTextByKey('defaults.use') || ''],
+          duration: true,
+          prioritized: true,
+        })
       }
       break
     default:
