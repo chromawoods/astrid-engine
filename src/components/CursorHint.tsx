@@ -41,22 +41,33 @@ export default function CursorHint(props: CursorProps) {
     props.containerRef?.current?.addEventListener(
       'mousemove',
       (event: MouseEvent) => {
+        const containerRect =
+          props.containerRef?.current?.getBoundingClientRect() || {
+            top: 0,
+            left: 0,
+          }
         setCoords({
-          top: event.y,
-          left: event.x,
+          top: event.clientY - parseInt(containerRect.top.toString()),
+          left: event.clientX - containerRect.left,
         })
       }
     )
   }, [])
 
-  return cursorImage ? (
+  return (
     <div
       className='ae-cursor-hint'
       style={{
         top: coords.top,
         left: coords.left,
-        backgroundImage: 'url(' + cursorImage + ')',
+        backgroundImage: cursorImage ? 'url(' + cursorImage + ')' : 'none',
       }}
-    ></div>
-  ) : null
+    >
+      <span className='ae-debug-elem'>
+        {`x: ${coords.left}`}
+        <br />
+        {`y: ${coords.top}`}
+      </span>
+    </div>
+  )
 }

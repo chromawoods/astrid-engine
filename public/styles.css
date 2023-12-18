@@ -46,7 +46,7 @@ body {
 }
 
 .ae-cursor-hint {
-  position: fixed;
+  position: absolute;
   width: 24px;
   height: 24px;
   margin-top: -16px;
@@ -54,6 +54,10 @@ body {
   background-size: cover;
   background-position: center;
   z-index: 30;
+}
+
+.ae-cursor-hint .ae-debug-elem {
+  width: 40px;
 }
 
 .ae-textbox {
