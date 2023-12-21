@@ -24,7 +24,7 @@ function getViewContent(id: View) {
   }
 }
 
-export function switchView(id: View) {
+function switchView(id: View) {
   $currentViewId.set(id)
   id &&
     transitionIn(() => {

@@ -31,27 +31,6 @@ export const $rooms = atom<Rooms>({})
 
 export const $nextView = atom<string>('')
 
-/*
-export const $currentRoom = computed(
-  [$currentViewId, $gameObjects],
-  (): CurrentRoom | null => {
-    const id = $currentViewId.get()
-    const room = $rooms.get()[id]
-
-    if (id && room) {
-      const roomGameObjects =
-        Object.values($gameObjects.get()).filter((go) => {
-          return room && room.objects?.includes(go.id) && !go.hidden
-        }) || []
-
-      return { ...room, id: id, gameObjects: roomGameObjects }
-    }
-
-    return null
-  }
-)
-*/
-
 export function getCurrentRoom(): Room | null {
   const id = $currentViewId.get()
   const room = $rooms.get()[id]

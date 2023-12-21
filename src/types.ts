@@ -39,7 +39,7 @@ export type UserAction = {
   data: string[] | string[][]
 }
 
-export type SystemViews = 'ae_system_start'
+type SystemViews = 'ae_system_start'
 
 export type View = SystemViews | string
 
@@ -70,7 +70,7 @@ export type GameSettings = {
   defaultBackground?: string
 }
 
-export type GameObjectImage = {
+type GameObjectImage = {
   default: string
   inventory: string
 }
@@ -97,11 +97,6 @@ export type Room = {
   name?: string
   objects?: string[]
   portals?: Portal[]
-}
-
-export type CurrentRoom = Room & {
-  id: string
-  gameObjects: GameObject[]
 }
 
 export type Rooms = {

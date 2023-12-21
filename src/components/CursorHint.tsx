@@ -14,7 +14,7 @@ type CursorProps = {
 
 const $cursorImage = atom<string>('')
 
-export const setCursorImage = (image: string) => $cursorImage.set(image)
+const setCursorImage = (image: string) => $cursorImage.set(image)
 
 $currentInteraction.listen((ci) => {
   if (!$selectedInventoryItem.get()) {
