@@ -1,15 +1,16 @@
-import type { Event } from '../types'
-import { arrayify } from '../utils/helpers'
-import doAction from './action'
+import type { GameEvent } from '../types'
+import doAction from './gameAction'
+import handleScenario from './scenario'
 import { info } from '../utils/logger'
-import scenarioAction from './scenario'
 
-export default function fireEvent(event: Event) {
-  event.data = arrayify(event.data)
+export default function fireEvent(event: GameEvent) {
+  if (typeof event.data === 'string') {
+    event.data = [event.data]
+  }
 
   info('fireEvent:', event)
 
-  const scenario = scenarioAction(event)
+  const scenario = handleScenario(event) //scenarioAction(event)
 
   if (!scenario || !scenario.preventDefault) {
     doAction(event)

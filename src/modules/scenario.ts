@@ -1,7 +1,7 @@
-import type { Event, Scenario } from '../types'
+import type { GameEvent, Scenario } from '../types'
 
 import { $checkpoints } from '../utils/store'
-import doAction from './action'
+import handleUserAction from './userAction'
 import { info } from '../utils/logger'
 import { map } from 'nanostores'
 import { paramsAreEqual } from '../utils/helpers'
@@ -10,7 +10,7 @@ const $scenarios = map<Scenario[]>([])
 
 export const setScenarios = (scenarios: Scenario[]) => $scenarios.set(scenarios)
 
-function getExecutableScenario(event: Event) {
+function getExecutableScenario(event: GameEvent) {
   return $scenarios.get().find((s) => {
     if (
       s.event.id === event.id &&
@@ -33,11 +33,11 @@ function getExecutableScenario(event: Event) {
   })
 }
 
-export default function scenarioAction(event: Event) {
+export default function handleScenario(event: GameEvent) {
   const scenario = getExecutableScenario(event)
 
-  if (scenario && (scenario.actions || scenario.isCheckpoint)) {
-    scenario.actions?.forEach(doAction)
+  if (scenario) {
+    scenario.actions && scenario.actions.forEach(handleUserAction)
 
     if (scenario.isCheckpoint) {
       info('checkpoint reached', scenario.isCheckpoint)

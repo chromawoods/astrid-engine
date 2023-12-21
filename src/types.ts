@@ -11,7 +11,7 @@ export type HotkeyAction = {
 
 export type Interaction = 'none' | 'look' | 'use'
 
-export type EventType =
+export type GameEventId =
   | 'transitRooms'
   | 'enterRoom'
   | 'leaveRoom'
@@ -20,30 +20,32 @@ export type EventType =
   | 'use'
   | 'useItem'
   | 'talk'
+
+export type GameEvent = {
+  id: GameEventId
+  data: string[]
+}
+
+export type UserActionId =
   | 'print'
   | 'printKey'
   | 'hideObject'
   | 'showObject'
+  | 'delay'
+  | 'goToRoom'
 
-export type Event = {
-  id: EventType
-  data: string[]
+export type UserAction = {
+  id: UserActionId
+  data: string[] | string[][]
 }
 
 export type SystemViews = 'ae_system_start'
 
 export type View = SystemViews | string
 
-export type ActionType = 'print'
-
-export type Action = {
-  id: ActionType
-  data: string[] | string[][]
-}
-
 export type Scenario = {
-  event: Event
-  actions: Action[]
+  event: GameEvent
+  actions: UserAction[]
   isCheckpoint?: string
   requiresCheckpoint?: string | string[]
   preventDefault?: boolean

@@ -1,4 +1,4 @@
-import type { EventType, GameObject } from '../types'
+import type { GameEventId, GameObject } from '../types'
 import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
 import { useStore } from '@nanostores/react'
 import { clearTextBox, displayTextBox } from './TextBox'
@@ -22,7 +22,7 @@ export default function GameObject(props: GameObject) {
         id:
           props.isInInventory && currentInteraction === 'none'
             ? 'use'
-            : (currentInteraction as EventType),
+            : (currentInteraction as GameEventId),
         data: [id],
       })
     }

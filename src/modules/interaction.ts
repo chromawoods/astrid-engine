@@ -3,7 +3,7 @@ import {
   $gameObjects,
   $selectedInventoryItem,
 } from '../utils/store'
-import type { Event, GameObject } from '../types'
+import type { GameEvent, GameObject } from '../types'
 import { error, info } from '../utils/logger'
 
 import { displayTextBox } from '../components/TextBox'
@@ -20,25 +20,19 @@ export function collect(gameObject: GameObject) {
   })
 }
 
-export default function doInteraction(event: Event) {
+export default function doInteraction(event: GameEvent) {
   info('doInteraction:', event.id)
 
   const gameObject = getGameObject(event.data[0])
 
   switch (event.id) {
     case 'look':
-      if (gameObject.description) {
-        fireEvent({
-          id: 'print',
-          data: [gameObject.description || getTextByKey('defaults.look') || ''],
-        })
-      } else {
-        displayTextBox({
-          text: [getTextByKey('defaults.look') || ''],
-          duration: true,
-          prioritized: true,
-        })
-      }
+      const text = gameObject.description || getTextByKey('defaults.look') || ''
+      displayTextBox({
+        text: [text],
+        duration: true,
+        prioritized: true,
+      })
       break
     case 'use':
       if (gameObject.isInInventory) {
