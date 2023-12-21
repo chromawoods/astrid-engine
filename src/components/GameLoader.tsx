@@ -4,6 +4,7 @@ import { getGameData, getSettings } from '../modules/dataFetcher'
 import { useEffect, useState } from 'react'
 
 import { $settings } from '../utils/store'
+import AlertError from './AlertError'
 import Game from './Game'
 import { info } from '../utils/logger'
 import { setGameData } from '../utils/storeHelpers'
@@ -93,9 +94,10 @@ export default function GameLoader() {
   }, [])
 
   return (
-    <>
+    <div style={{ position: 'relative' }}>
+      <AlertError />
       {isGameLoaded && <Game />}
       <GlobalLoadingState />
-    </>
+    </div>
   )
 }

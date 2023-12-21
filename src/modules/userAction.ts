@@ -1,8 +1,8 @@
 import { hideGameObject, showGameObject } from '../utils/storeHelpers'
 
 import type { UserAction } from '../types'
+import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
-import { error } from '../utils/logger'
 import { getTextByKey } from './dialog'
 
 export default function handleUserAction(action: UserAction) {
@@ -32,6 +32,6 @@ export default function handleUserAction(action: UserAction) {
       break
 
     default:
-      error('invalid event id', action.id)
+      displayError({ message: 'invalid event id: ' + action.id, data: action })
   }
 }

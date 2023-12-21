@@ -38,11 +38,15 @@ body {
 
 .ae-error-message {
   display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
   margin: 16px;
   padding: 8px 16px;
   color: var(--super-light);
   background-color: var(--error);
   border-radius: 3px;
+  z-index: 40;
 }
 
 .ae-cursor-hint {

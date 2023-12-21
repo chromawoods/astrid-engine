@@ -2,9 +2,10 @@ import { $nextView, $settings } from '../utils/store'
 import type { GameEvent, Interaction } from '../types'
 import { clearTextBox, displayTextBox } from '../components/TextBox'
 import doInteraction, { resetInteraction } from './interaction'
-import { error, info } from '../utils/logger'
 
+import { displayError } from '../components/AlertError'
 import { getTextByKey } from './dialog'
+import { info } from '../utils/logger'
 
 export default function doAction(event: GameEvent) {
   info('doAction', event)
@@ -34,6 +35,9 @@ export default function doAction(event: GameEvent) {
       break
 
     default:
-      error('unhandled event id', event.id)
+      displayError({
+        message: 'unhandled GameEventId: ' + event.id,
+        data: event,
+      })
   }
 }

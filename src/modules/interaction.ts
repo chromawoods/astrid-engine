@@ -4,14 +4,14 @@ import {
   $selectedInventoryItem,
 } from '../utils/store'
 import type { GameEvent, GameObject } from '../types'
-import { error, info } from '../utils/logger'
 
+import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
-import fireEvent from './event'
 import { getGameObject } from '../utils/storeHelpers'
 import { getTextByKey } from './dialog'
+import { info } from '../utils/logger'
 
-export function collect(gameObject: GameObject) {
+function collect(gameObject: GameObject) {
   gameObject.isInInventory = true
 
   $gameObjects.set({
@@ -48,7 +48,7 @@ export default function doInteraction(event: GameEvent) {
       }
       break
     default:
-      error('unknown interaction', event.id)
+      displayError({ message: 'unknown interaction: ' + event.id, data: event })
   }
 }
 

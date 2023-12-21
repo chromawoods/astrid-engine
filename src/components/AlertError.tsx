@@ -1,11 +1,25 @@
-import { error } from '../utils/logger'
+import { atom } from 'nanostores'
+import { error as logError } from '../utils/logger'
+import { useStore } from '@nanostores/react'
 
-type AlertErrorProps = {
+type ErrorProps = {
   message: string
   data?: unknown
 }
 
-export default function AlertError({ message, data }: AlertErrorProps) {
-  error(message, data)
-  return <div className='ae-error-message'>{message}</div>
+const $error = atom<ErrorProps | undefined>()
+
+export function displayError(error: ErrorProps) {
+  $error.set(error)
+}
+
+export default function AlertError() {
+  const error = useStore($error)
+
+  if (error) {
+    logError(error.message, error.data)
+    return <div className='ae-error-message'>{error.message}</div>
+  }
+
+  return null
 }
