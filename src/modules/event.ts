@@ -1,9 +1,14 @@
+import handleScenario, { $ongoingScenario } from './scenario'
+
 import type { GameEvent } from '../types'
-import doAction from './gameAction'
-import handleScenario from './scenario'
+import handleGameAction from './gameAction'
 import { info } from '../utils/logger'
 
 export default async function fireEvent(event: GameEvent) {
+  if ($ongoingScenario.get()) {
+    return
+  }
+
   if (typeof event.data === 'string') {
     event.data = [event.data]
   }
@@ -13,6 +18,6 @@ export default async function fireEvent(event: GameEvent) {
   const scenario = await handleScenario(event)
 
   if (!scenario || !scenario.preventDefault) {
-    doAction(event)
+    handleGameAction(event)
   }
 }

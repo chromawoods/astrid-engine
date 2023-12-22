@@ -7,8 +7,8 @@ import { displayError } from '../components/AlertError'
 import { getTextByKey } from './dialog'
 import { info } from '../utils/logger'
 
-export default function doAction(event: GameEvent) {
-  info('doAction', event)
+export default function handleGameAction(event: GameEvent) {
+  info('handleGameAction', event)
 
   if ($settings.get().interactionTypes.includes(event.id as Interaction)) {
     doInteraction(event)
@@ -32,6 +32,14 @@ export default function doAction(event: GameEvent) {
         duration: true,
         prioritized: true,
       })
+      break
+
+    case 'hoverObject':
+      displayTextBox({ text: event.data[0] })
+      break
+
+    case 'hoverObjectOut':
+      clearTextBox()
       break
 
     default:

@@ -40,10 +40,14 @@ export default function GameObject(props: GameObject) {
         left: props.x,
       }}
       onMouseOver={() => {
-        currentInteraction === 'none' && name && displayTextBox({ text: name })
+        currentInteraction === 'none' &&
+          name &&
+          fireEvent({ id: 'hoverObject', data: [name] })
       }}
       onMouseOut={() => {
-        currentInteraction === 'none' && name && clearTextBox()
+        currentInteraction === 'none' &&
+          name &&
+          fireEvent({ id: 'hoverObjectOut', data: [] })
       }}
       onClick={handleClick}
     >

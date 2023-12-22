@@ -20,6 +20,8 @@ export type GameEventId =
   | 'use'
   | 'useItem'
   | 'talk'
+  | 'hoverObject'
+  | 'hoverObjectOut'
 
 export type GameEvent = {
   id: GameEventId
