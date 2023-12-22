@@ -1,4 +1,4 @@
-import type { GameEvent, Scenario } from '../types'
+import type { GameEvent, Scenario, UserAction } from '../types'
 
 import { $checkpoints } from '../utils/store'
 import handleUserAction from './userAction'
@@ -33,11 +33,20 @@ function getExecutableScenario(event: GameEvent) {
   })
 }
 
-export default function handleScenario(event: GameEvent) {
+async function iterateScenarioActions(actions: UserAction[]) {
+  const action = actions.shift()
+
+  action && (await handleUserAction(action))
+  actions.length && iterateScenarioActions(actions)
+}
+
+export default async function handleScenario(event: GameEvent) {
   const scenario = getExecutableScenario(event)
 
   if (scenario) {
-    scenario.actions && scenario.actions.forEach(handleUserAction)
+    scenario.actions &&
+      scenario.actions.length &&
+      (await iterateScenarioActions(scenario.actions))
 
     if (scenario.isCheckpoint) {
       info('checkpoint reached', scenario.isCheckpoint)

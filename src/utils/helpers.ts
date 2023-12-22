@@ -11,7 +11,7 @@ export const hasEveryArrayValue = (a: any[], b: any[]) =>
 export const paramsAreEqual = (a: string | any[], b: string | any[]) =>
   hasEveryArrayValue(arrayify(a), arrayify(b))
 
-export const sleep = async (ms: number) =>
+export const sleep = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
 
 export function getValueByKeyPath(obj: DeepObj, path: string): any {

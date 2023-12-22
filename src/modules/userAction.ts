@@ -4,8 +4,9 @@ import type { UserAction } from '../types'
 import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
 import { getTextByKey } from './dialog'
+import { sleep } from '../utils/helpers'
 
-export default function handleUserAction(action: UserAction) {
+export default async function handleUserAction(action: UserAction) {
   switch (action.id) {
     case 'print':
       displayTextBox({
@@ -29,6 +30,10 @@ export default function handleUserAction(action: UserAction) {
 
     case 'showObject':
       showGameObject(action.data[0] as string)
+      break
+
+    case 'delay':
+      await sleep(parseInt(action.data[0] as string))
       break
 
     default:

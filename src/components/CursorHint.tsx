@@ -36,7 +36,7 @@ export default function CursorHint(props: CursorProps) {
   })
 
   useEffect(() => {
-    info('setting up mousemove listener')
+    info('setup mousemove listener')
 
     props.containerRef?.current?.addEventListener(
       'mousemove',
