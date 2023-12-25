@@ -46,13 +46,15 @@ type SystemViews = 'ae_system_start'
 export type View = SystemViews | string
 
 export type Scenario = {
-  event: GameEvent
   actions: UserAction[]
+  anyCheckpoint: string[]
+  event: GameEvent
+  preventDefault: boolean
+  reached: boolean
+  repeat: boolean
+  requiresCheckpoint: string[]
+  untilCheckpoint: string[]
   isCheckpoint?: string
-  requiresCheckpoint?: string | string[]
-  preventDefault?: boolean
-  reached?: boolean
-  repeat?: boolean
 }
 
 export type ScenarioData = Omit<Scenario, 'event' | 'actions'> & {
@@ -105,11 +107,7 @@ export type Rooms = {
   [key: string]: Room
 }
 
-export type Portal = {
-  x: number
-  y: number
-  width: string
-  height: string
+export type Portal = Pick<GameObject, 'x' | 'y' | 'width' | 'height'> & {
   destination: string
 }
 
@@ -120,6 +118,7 @@ export type GameData = {
   scenarios: Scenario[]
   rooms: Rooms
   dialog: DeepObj
+  checkpoints?: Checkpoint[]
 }
 
 export type GameDataRaw = Omit<GameData, 'scenarios'> & {

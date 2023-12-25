@@ -1,8 +1,21 @@
 import type { DeepObj } from '../types'
 
 export function arrayify<T>(value: T | T[], sort: boolean = false): T[] {
+  if (typeof value === 'undefined') {
+    return []
+  }
   value = Array.isArray(value) ? value : [value]
   return sort ? value.sort() : value
+}
+
+export function arrayifyDataStr(
+  value: string | string[] | undefined
+): string[] {
+  return typeof value === 'string'
+    ? value.split(' ')
+    : Array.isArray(value)
+    ? value
+    : []
 }
 
 export const hasEveryArrayValue = (a: any[], b: any[]) =>

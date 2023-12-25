@@ -1,10 +1,10 @@
 import type { GameEvent, Scenario, UserAction } from '../types'
+import { arrayify, paramsAreEqual } from '../utils/helpers'
 import { atom, map } from 'nanostores'
 
 import { $checkpoints } from '../utils/store'
 import handleUserAction from './userAction'
 import { info } from '../utils/logger'
-import { paramsAreEqual } from '../utils/helpers'
 
 const $scenarios = map<Scenario[]>([])
 
@@ -19,18 +19,21 @@ function getExecutableScenario(event: GameEvent) {
       paramsAreEqual(s.event.data, event.data) &&
       (!s.reached || s.repeat)
     ) {
-      if (s.requiresCheckpoint) {
-        const reachedCheckpoints = $checkpoints.get()
+      const reachedCheckpoints = $checkpoints.get()
 
-        const cpts =
-          typeof s.requiresCheckpoint === 'string'
-            ? [s.requiresCheckpoint]
-            : s.requiresCheckpoint
-
-        return cpts.every((ch) => reachedCheckpoints.includes(ch))
-      } else {
-        return true
+      if (s.requiresCheckpoint.length) {
+        return arrayify(s.requiresCheckpoint).every((ch) =>
+          reachedCheckpoints.includes(ch)
+        )
       }
+
+      if (s.anyCheckpoint.length) {
+        return arrayify(s.anyCheckpoint).some((ch) =>
+          reachedCheckpoints.includes(ch)
+        )
+      }
+
+      return true
     }
   })
 }

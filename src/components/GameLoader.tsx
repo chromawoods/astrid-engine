@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { $settings } from '../utils/store'
 import AlertError from './AlertError'
 import Game from './Game'
+import { arrayifyDataStr } from '../utils/helpers'
 import { info } from '../utils/logger'
 import { setGameData } from '../utils/storeHelpers'
 
@@ -59,8 +60,12 @@ function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
 
     return {
       ...s,
+      anyCheckpoint: arrayifyDataStr(s.anyCheckpoint),
+      requiresCheckpoint: arrayifyDataStr(s.requiresCheckpoint),
       preventDefault:
         typeof s.preventDefault === 'undefined' ? true : s.preventDefault,
+      reached: !!s.reached,
+      repeat: !!s.repeat,
       event: { id: eventId, data: eventParams },
       actions: actions,
     } as Scenario
@@ -85,6 +90,7 @@ export default function GameLoader() {
           rooms: gameData.rooms,
           dialog: gameData.dialog,
           scenarios: normalizeScenarioData(gameData.scenarios),
+          checkpoints: arrayifyDataStr(gameData.checkpoints),
         })
 
         setLoadingState(false)

@@ -1,4 +1,5 @@
 import {
+  $checkpoints,
   $gameObjects,
   $nextView,
   $rooms,
@@ -22,6 +23,7 @@ function setGameObjectIds(obj: { [key: string]: Omit<GameObject, 'id'> }) {
 
 export function setGameData(data: GameData) {
   setDialog(data.dialog)
+  $checkpoints.set(data.checkpoints || [])
   $gameObjects.set(setGameObjectIds(data.objects))
   setScenarios(data.scenarios)
   $rooms.set(data.rooms)
