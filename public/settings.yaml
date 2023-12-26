@@ -5,3 +5,4 @@ entryRoomId: basement
 interactionTypes:
   - look
   - use
+dialogFont: Boogaloo-Regular.ttf

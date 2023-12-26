@@ -69,6 +69,8 @@ export type GameSettings = {
   gameTitle: string
   imageDir: string
   interactionTypes: Interaction[]
+  dialogFont?: string
+  headingFont?: string
   dataFileType?: 'yaml' | 'json'
   debug?: boolean
   defaultBackground?: string

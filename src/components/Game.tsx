@@ -17,17 +17,49 @@ export default function Game() {
   }, [])
 
   return (
-    <div
-      className={`ae-game ${settings.debug && 'ae-debug'} ${
-        hotKeyAction === 'debugView' && 'ae-debug-view'
-      }`}
-      style={{
-        width: settings.canvasWidth,
-        height: settings.canvasHeight,
-        backgroundColor: settings.defaultBackground,
-      }}
-    >
-      <View />
-    </div>
+    <>
+      {settings.dialogFont && (
+        <link
+          rel='preload'
+          href={`./public/fonts/${settings.dialogFont}`}
+          as='font'
+          crossOrigin='anonymous'
+        />
+      )}
+      {settings.headingFont && (
+        <link
+          rel='preload'
+          href={`./public/fonts/${settings.headingFont}`}
+          as='font'
+          crossOrigin='anonymous'
+        />
+      )}
+
+      <style>
+        {settings.dialogFont &&
+          `@font-face {
+          font-family: "dialog";
+          src: url("./public/fonts/${settings.dialogFont}");
+        }`}
+        {settings.headingFont &&
+          `@font-face {
+          font-family: "heading";
+          src: url("./public/fonts/${settings.headingFont}");
+        }`}
+      </style>
+
+      <div
+        className={`ae-game ${settings.debug && 'ae-debug'} ${
+          hotKeyAction === 'debugView' && 'ae-debug-view'
+        }`}
+        style={{
+          width: settings.canvasWidth,
+          height: settings.canvasHeight,
+          backgroundColor: settings.defaultBackground,
+        }}
+      >
+        <View />
+      </div>
+    </>
   )
 }
