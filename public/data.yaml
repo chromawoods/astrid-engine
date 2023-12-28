@@ -78,7 +78,7 @@ scenarios:
   - event: use baseballBat
     preventDefault: false
     actions:
-      - print It feels nice and solid.
+      - print It feels nice and /color:#d99/solid/color/.
   - event: useItem baseballBat spider
     actions:
       - print Take that!

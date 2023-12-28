@@ -1,5 +1,6 @@
 import { arrayify } from '../utils/helpers'
 import { atom } from 'nanostores'
+import { getFormattedText } from '../modules/dialog'
 import { info } from '../utils/logger'
 import { useStore } from '@nanostores/react'
 
@@ -54,7 +55,14 @@ export default function TextBox() {
 
   if (textbox?.text?.length) {
     info('textbox:', textbox)
-    return <span className='ae-textbox'>{textbox.text}</span>
+    return (
+      <span
+        className='ae-textbox'
+        dangerouslySetInnerHTML={{
+          __html: getFormattedText(textbox.text as string),
+        }}
+      ></span>
+    )
   }
 
   return null
