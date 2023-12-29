@@ -1,4 +1,9 @@
-import { hideGameObject, showGameObject } from '../utils/storeHelpers'
+import {
+  getGameObject,
+  hideGameObject,
+  showGameObject,
+  updateGameObject,
+} from '../utils/storeHelpers'
 
 import type { UserAction } from '../types'
 import { displayError } from '../components/AlertError'
@@ -34,6 +39,22 @@ export default async function handleUserAction(action: UserAction) {
 
     case 'delay':
       await sleep(parseInt(action.data[0] as string))
+      break
+
+    case 'ghost':
+      const toGhost = getGameObject(action.data[0] as string)
+      if (toGhost) {
+        toGhost.ghost = true
+        updateGameObject(toGhost)
+      }
+      break
+
+    case 'unghost':
+      const toUnghost = getGameObject(action.data[0] as string)
+      if (toUnghost) {
+        toUnghost.ghost = false
+        updateGameObject(toUnghost)
+      }
       break
 
     default:

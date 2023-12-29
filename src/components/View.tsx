@@ -1,4 +1,4 @@
-import { $currentViewId, $nextView, getCurrentRoom } from '../utils/store'
+import { $currentViewId, $nextView } from '../utils/store'
 import ViewTransition, { transitionIn, transitionOut } from './ViewTransition'
 
 import type { View } from '../types'
@@ -8,6 +8,7 @@ import { atom } from 'nanostores'
 import fireEvent from '../modules/event'
 import { useStore } from '@nanostores/react'
 import InGame from './views/InGame'
+import { getCurrentRoom } from '../utils/storeHelpers'
 
 const $viewContent = atom<ReactElement | null>(null)
 

@@ -1,29 +1,25 @@
-import {
-  $currentInteraction,
-  $gameObjects,
-  $selectedInventoryItem,
-} from '../utils/store'
+import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
 import type { GameEvent, GameObject } from '../types'
+import { getGameObject, updateGameObject } from '../utils/storeHelpers'
 
 import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
-import { getGameObject } from '../utils/storeHelpers'
 import { getTextByKey } from './dialog'
 import { info } from '../utils/logger'
 
 function collect(gameObject: GameObject) {
   gameObject.isInInventory = true
-
-  $gameObjects.set({
-    ...$gameObjects.get(),
-    ...{ [gameObject.id]: gameObject },
-  })
+  updateGameObject(gameObject)
 }
 
 export default function doInteraction(event: GameEvent) {
   info('doInteraction:', event.id)
 
   const gameObject = getGameObject(event.data[0])
+
+  if (!gameObject) {
+    return
+  }
 
   switch (event.id) {
     case 'look':

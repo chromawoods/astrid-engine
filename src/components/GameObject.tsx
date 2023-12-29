@@ -1,16 +1,19 @@
 import type { GameEventId, GameObject } from '../types'
 import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
 import { useStore } from '@nanostores/react'
-import { clearTextBox, displayTextBox } from './TextBox'
 import fireEvent from '../modules/event'
 import { resetInteraction } from '../modules/interaction'
 
 export default function GameObject(props: GameObject) {
-  const { id, name, image } = props
+  const { id, name, image, ghost } = props
   const currentInteraction = useStore($currentInteraction)
   const selectedInventoryItem = useStore($selectedInventoryItem)
 
   function handleClick() {
+    if (ghost) {
+      return
+    }
+
     if (selectedInventoryItem) {
       fireEvent({
         id: 'useItem',
@@ -40,12 +43,14 @@ export default function GameObject(props: GameObject) {
         left: props.x,
       }}
       onMouseOver={() => {
-        currentInteraction === 'none' &&
+        !ghost &&
+          currentInteraction === 'none' &&
           name &&
           fireEvent({ id: 'hoverObject', data: [name] })
       }}
       onMouseOut={() => {
-        currentInteraction === 'none' &&
+        !ghost &&
+          currentInteraction === 'none' &&
           name &&
           fireEvent({ id: 'hoverObjectOut', data: [] })
       }}

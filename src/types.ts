@@ -35,6 +35,8 @@ export type UserActionId =
   | 'showObject'
   | 'delay'
   | 'goToRoom'
+  | 'ghost'
+  | 'unghost'
 
 export type UserAction = {
   id: UserActionId
@@ -88,6 +90,7 @@ export type GameObject = {
   width?: number
   height?: number
   image?: GameObjectImage
+  ghost?: boolean
   name?: string
   description?: string
   collectable?: boolean
