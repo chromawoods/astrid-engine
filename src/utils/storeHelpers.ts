@@ -1,12 +1,14 @@
 import {
   $checkpoints,
+  $currentViewId,
   $gameObjects,
   $nextView,
   $rooms,
   $selectedInventoryItem,
 } from './store'
-import type { GameData, GameObject } from '../types'
+import type { GameData, GameObject, Room } from '../types'
 
+import { displayError } from '../components/AlertError'
 import { info } from './logger'
 import { setDialog } from '../modules/dialog'
 import { setScenarios } from '../modules/scenario'
@@ -33,21 +35,47 @@ export function setGameData(data: GameData) {
 }
 
 export function getGameObject(id: string) {
-  return $gameObjects.get()[id]
+  const gameObjects = $gameObjects.get()
+
+  if (gameObjects[id]) {
+    return gameObjects[id]
+  }
+
+  displayError({ message: 'game object does not exist: ' + id })
 }
 
 export function hideGameObject(id: string) {
   const gameObject = getGameObject(id)
-  gameObject.hidden = true
-  $gameObjects.set({ gameObject, ...$gameObjects.get() })
 
-  if ($selectedInventoryItem.get()?.id === id) {
-    $selectedInventoryItem.set(null)
+  if (gameObject) {
+    gameObject.hidden = true
+    updateGameObject(gameObject)
+
+    if ($selectedInventoryItem.get()?.id === id) {
+      $selectedInventoryItem.set(null)
+    }
   }
 }
 
 export function showGameObject(id: string) {
   const gameObject = getGameObject(id)
-  gameObject.hidden = false
-  $gameObjects.set({ gameObject, ...$gameObjects.get() })
+
+  if (gameObject) {
+    gameObject.hidden = false
+    updateGameObject(gameObject)
+  }
+}
+
+export function getCurrentRoom(): Room | null {
+  const id = $currentViewId.get()
+  const room = $rooms.get()[id]
+
+  return id && room ? { ...room, id: id } : null
+}
+
+export function updateGameObject(gameObject: GameObject) {
+  $gameObjects.set({
+    ...$gameObjects.get(),
+    ...{ [gameObject.id]: gameObject },
+  })
 }

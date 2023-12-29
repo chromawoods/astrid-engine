@@ -31,13 +31,6 @@ export const $rooms = atom<Rooms>({})
 
 export const $nextView = atom<string>('')
 
-export function getCurrentRoom(): Room | null {
-  const id = $currentViewId.get()
-  const room = $rooms.get()[id]
-
-  return id && room ? { ...room, id: id } : null
-}
-
 export const $currentInteraction = atom<Interaction>('none')
 
 export const $checkpoints = atom<Checkpoint[]>([])
