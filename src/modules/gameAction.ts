@@ -27,11 +27,13 @@ export default function handleGameAction(event: GameEvent) {
       break
 
     case 'useItem':
-      displayTextBox({
-        text: getTextByKey('defaults.useItem'),
-        duration: true,
-        prioritized: true,
-      })
+      if (event.data[0] !== event.data[1]) {
+        displayTextBox({
+          text: getTextByKey('defaults.useItem'),
+          duration: true,
+          prioritized: true,
+        })
+      }
       break
 
     case 'hoverObject':
