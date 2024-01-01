@@ -19,7 +19,7 @@ const setCursorImage = (image: string) => $cursorImage.set(image)
 $currentInteraction.listen((ci) => {
   if (!$selectedInventoryItem.get()) {
     setCursorImage(
-      ci === 'none' ? '' : `${$settings.get().imageDir}interactions/${ci}.png`
+      !ci ? '' : `${$settings.get().imageDir}interactions/${ci}.png`
     )
   }
 })
@@ -60,7 +60,7 @@ export default function CursorHint(props: CursorProps) {
       style={{
         top: coords.top,
         left: coords.left,
-        backgroundImage: cursorImage ? 'url(' + cursorImage + ')' : 'none',
+        backgroundImage: cursorImage ? 'url(' + cursorImage + ')' : '',
       }}
     >
       <span className='ae-debug-elem'>

@@ -49,5 +49,5 @@ export default function doInteraction(event: GameEvent) {
 }
 
 export function resetInteraction() {
-  $currentInteraction.set('none')
+  $currentInteraction.set(null)
 }

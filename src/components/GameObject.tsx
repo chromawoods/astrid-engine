@@ -23,7 +23,7 @@ export default function GameObject(props: GameObject) {
     } else {
       fireEvent({
         id:
-          props.isInInventory && currentInteraction === 'none'
+          props.isInInventory && !currentInteraction
             ? 'use'
             : (currentInteraction as GameEventId),
         data: [id],
@@ -43,16 +43,10 @@ export default function GameObject(props: GameObject) {
         left: props.x,
       }}
       onMouseOver={() => {
-        !ghost &&
-          currentInteraction === 'none' &&
-          name &&
-          fireEvent({ id: 'hoverObject', data: [name] })
+        !ghost && name && fireEvent({ id: 'hoverObject', data: [name] })
       }}
       onMouseOut={() => {
-        !ghost &&
-          currentInteraction === 'none' &&
-          name &&
-          fireEvent({ id: 'hoverObjectOut', data: [] })
+        !ghost && name && fireEvent({ id: 'hoverObjectOut', data: [] })
       }}
       onClick={handleClick}
     >

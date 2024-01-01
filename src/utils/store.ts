@@ -31,6 +31,6 @@ export const $rooms = atom<Rooms>({})
 
 export const $nextView = atom<string>('')
 
-export const $currentInteraction = atom<Interaction>('none')
+export const $currentInteraction = atom<Interaction | null>(null)
 
 export const $checkpoints = atom<Checkpoint[]>([])
