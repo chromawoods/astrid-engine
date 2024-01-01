@@ -61,11 +61,12 @@ function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
     return {
       ...s,
       anyCheckpoint: arrayifyDataStr(s.anyCheckpoint),
+      untilCheckpoint: arrayifyDataStr(s.untilCheckpoint),
       requiresCheckpoint: arrayifyDataStr(s.requiresCheckpoint),
       preventDefault:
         typeof s.preventDefault === 'undefined' ? true : s.preventDefault,
       reached: !!s.reached,
-      repeat: !!s.repeat,
+      repeat: s.untilCheckpoint ? true : !!s.repeat,
       event: { id: eventId, data: eventParams },
       actions: actions,
     } as Scenario

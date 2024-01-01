@@ -22,15 +22,17 @@ function getExecutableScenario(event: GameEvent) {
       const reachedCheckpoints = $checkpoints.get()
 
       if (s.requiresCheckpoint.length) {
-        return arrayify(s.requiresCheckpoint).every((ch) =>
+        return s.requiresCheckpoint.every((ch) =>
           reachedCheckpoints.includes(ch)
         )
       }
 
+      if (s.untilCheckpoint.length) {
+        return !s.untilCheckpoint.every((ch) => reachedCheckpoints.includes(ch))
+      }
+
       if (s.anyCheckpoint.length) {
-        return arrayify(s.anyCheckpoint).some((ch) =>
-          reachedCheckpoints.includes(ch)
-        )
+        return s.anyCheckpoint.some((ch) => reachedCheckpoints.includes(ch))
       }
 
       return true
@@ -58,7 +60,7 @@ export default async function handleScenario(event: GameEvent) {
 
     scenario.actions &&
       scenario.actions.length &&
-      (await iterateScenarioActions(scenario.actions))
+      (await iterateScenarioActions([...scenario.actions]))
 
     if (scenario.isCheckpoint) {
       info('checkpoint reached', scenario.isCheckpoint)
