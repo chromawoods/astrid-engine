@@ -99,4 +99,4 @@ dialog:
   defaults:
     look: There's nothing special about it.
     use: Better leave that alone.
-    useItem: It doesn't work
+    useItem: That doesn't work.

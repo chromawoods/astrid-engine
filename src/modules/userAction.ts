@@ -1,5 +1,6 @@
 import {
   getGameObject,
+  goToAnotherRoom,
   hideGameObject,
   showGameObject,
   updateGameObject,
@@ -55,6 +56,10 @@ export default async function handleUserAction(action: UserAction) {
         toUnghost.ghost = false
         updateGameObject(toUnghost)
       }
+      break
+
+    case 'goToRoom':
+      goToAnotherRoom(action.data[0] as string)
       break
 
     default:

@@ -37,6 +37,7 @@ export type UserActionId =
   | 'goToRoom'
   | 'ghost'
   | 'unghost'
+  | 'gotoRoom'
 
 export type UserAction = {
   id: UserActionId

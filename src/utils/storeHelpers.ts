@@ -8,8 +8,10 @@ import {
 } from './store'
 import type { GameData, GameObject, Room } from '../types'
 
+import { clearTextBox } from '../components/TextBox'
 import { displayError } from '../components/AlertError'
 import { info } from './logger'
+import { resetInteraction } from '../modules/interaction'
 import { setDialog } from '../modules/dialog'
 import { setScenarios } from '../modules/scenario'
 
@@ -78,4 +80,11 @@ export function updateGameObject(gameObject: GameObject) {
     ...$gameObjects.get(),
     ...{ [gameObject.id]: gameObject },
   })
+}
+
+export function goToAnotherRoom(roomId: string) {
+  info('go to another room', roomId)
+  resetInteraction()
+  clearTextBox(true)
+  $nextView.set(roomId)
 }

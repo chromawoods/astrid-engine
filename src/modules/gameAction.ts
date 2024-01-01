@@ -1,10 +1,11 @@
-import { $nextView, $settings } from '../utils/store'
 import type { GameEvent, Interaction } from '../types'
 import { clearTextBox, displayTextBox } from '../components/TextBox'
 import doInteraction, { resetInteraction } from './interaction'
 
+import { $settings } from '../utils/store'
 import { displayError } from '../components/AlertError'
 import { getTextByKey } from './dialog'
+import { goToAnotherRoom } from '../utils/storeHelpers'
 import { info } from '../utils/logger'
 
 export default function handleGameAction(event: GameEvent) {
@@ -18,9 +19,7 @@ export default function handleGameAction(event: GameEvent) {
 
   switch (event.id) {
     case 'leaveRoom':
-      resetInteraction()
-      clearTextBox(true)
-      $nextView.set(event.data[1] as string)
+      goToAnotherRoom(event.data[1] as string)
       break
 
     case 'enterRoom':
