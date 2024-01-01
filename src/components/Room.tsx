@@ -1,4 +1,4 @@
-import AlertError from './AlertError'
+import { displayError } from './AlertError'
 import Portal from './Portal'
 import type { Portal as PortalType, Room } from '../types'
 import RoomObjects from './RoomObjects'
@@ -21,6 +21,6 @@ export default function Room({ room }: { room: Room }) {
       </div>
     )
   } else {
-    return <AlertError message='Could not render room' />
+    displayError({ message: 'invalid room data' })
   }
 }
