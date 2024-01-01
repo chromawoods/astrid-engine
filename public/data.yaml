@@ -7,8 +7,8 @@ objects:
       It's formidable in size, but would surely not withstand a good hit.
       Not gonna use my hands for that, though!
     width: 60
-    x: 100
-    y: 300
+    x: 400
+    y: 400
     image: objects/spider.webp
   basementBox:
     name: Wooden box
@@ -29,7 +29,7 @@ objects:
     hidden: true
   letter:
     name: Old letter
-    description: It's written in some weird language. I can't read it.
+    description: I found it my pocket when I woke up. It's written in some weird language. I can't read it.
     image: objects/letter.png
     isInInventory: true
   chest:
@@ -50,7 +50,8 @@ rooms:
       - baseballBat
       - basementBox
     portals:
-      - width: 150
+      - name: Way out
+        width: 150
         height: 80
         x: 300
         y: 120
@@ -70,6 +71,10 @@ rooms:
 
 # Describe scenarios
 scenarios:
+  - event: leaveRoom basement
+    untilCheckpoint: spiderDead
+    actions:
+      - print In case you haven't noticed, there is a mammoth-sized arachnid guarding the stairs. I'm not going near that thing unarmed.
   - event: look basementBox
     actions:
       - hideObject basementBox
@@ -78,8 +83,9 @@ scenarios:
   - event: use baseballBat
     preventDefault: false
     actions:
-      - print It feels nice and /color:#d99/solid/color/.
+      - print It feels nice and /color:#db8/solid/color/.
   - event: useItem baseballBat spider
+    isCheckpoint: spiderDead
     actions:
       - print Take that!
       - hideObject spider
