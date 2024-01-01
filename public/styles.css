@@ -99,6 +99,11 @@ body {
 .ae-game-object {
   position: absolute;
   height: auto;
+  z-index: 10;
+}
+
+.ae-game-object.is-ghost {
+  z-index: 8;
 }
 
 .ae-game-object-image {

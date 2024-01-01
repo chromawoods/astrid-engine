@@ -35,7 +35,7 @@ export default function GameObject(props: GameObject) {
 
   return (
     <div
-      className={`ae-game-object ${id}`}
+      className={`ae-game-object ${id} ${ghost ? 'is-ghost' : ''}`}
       style={{
         width: props.width,
         height: props.height || 'auto',
