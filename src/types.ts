@@ -9,7 +9,7 @@ export type HotkeyAction = {
   toggle?: boolean
 }
 
-export type Interaction = 'none' | 'look' | 'use'
+export type Interaction = 'look' | 'use'
 
 export type GameEventId =
   | 'transitRooms'
@@ -113,7 +113,10 @@ export type Rooms = {
   [key: string]: Room
 }
 
-export type Portal = Pick<GameObject, 'x' | 'y' | 'width' | 'height'> & {
+export type Portal = Pick<
+  GameObject,
+  'name' | 'x' | 'y' | 'width' | 'height'
+> & {
   destination: string
 }
 
