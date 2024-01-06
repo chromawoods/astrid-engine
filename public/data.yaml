@@ -7,8 +7,8 @@ objects:
       It's formidable in size, but would surely not withstand a good hit.
       Not gonna use my hands for that, though!
     width: 60
-    x: 400
-    y: 400
+    x: 470
+    y: 396
     image: objects/spider.webp
   basementBox:
     name: Wooden box
@@ -80,6 +80,10 @@ scenarios:
       - hideObject basementBox
       - showObject baseballBat
       - print Well well well, what have we here?
+  - event: use spider
+    repeat: true
+    actions:
+      - printRandomKey actions.useSpider
   - event: use baseballBat
     preventDefault: false
     actions:
@@ -98,7 +102,9 @@ scenarios:
     requiresCheckpoint: enterAttic
     repeat: true
     actions:
-      - print Oh no why did I go back down here?
+      - printRandom
+        - Oh no why did I go back down here?
+        - Yep - still creepy in here.
 
 # Describe dialog
 dialog:
@@ -106,3 +112,7 @@ dialog:
     look: There's nothing special about it.
     use: Better leave that alone.
     useItem: That doesn't work.
+  actions:
+    useSpider:
+      - Are you insane? I'm not going to touch it with my bare hands.
+      - Very funny. I'm not petting that monster!
