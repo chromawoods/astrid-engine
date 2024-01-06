@@ -12,6 +12,15 @@ function collect(gameObject: GameObject) {
   updateGameObject(gameObject)
 }
 
+export function handleLook(description: string | undefined) {
+  const text = description || getTextByKey('defaults.look') || ''
+  displayTextBox({
+    text: [text as string],
+    duration: true,
+    prioritized: true,
+  })
+}
+
 export default function doInteraction(event: GameEvent) {
   info('doInteraction:', event.id)
 
@@ -23,12 +32,7 @@ export default function doInteraction(event: GameEvent) {
 
   switch (event.id) {
     case 'look':
-      const text = gameObject.description || getTextByKey('defaults.look') || ''
-      displayTextBox({
-        text: [text],
-        duration: true,
-        prioritized: true,
-      })
+      handleLook(gameObject.description)
       break
     case 'use':
       if (gameObject.isInInventory) {
@@ -37,7 +41,7 @@ export default function doInteraction(event: GameEvent) {
         collect(gameObject)
       } else {
         displayTextBox({
-          text: [getTextByKey('defaults.use') || ''],
+          text: [(getTextByKey('defaults.use') as string) || ''],
           duration: true,
           prioritized: true,
         })

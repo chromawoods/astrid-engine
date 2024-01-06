@@ -91,6 +91,7 @@ export type GameObject = {
   width?: number
   height?: number
   image?: GameObjectImage
+  portalDestination?: string
   ghost?: boolean
   name?: string
   description?: string

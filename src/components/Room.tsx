@@ -1,8 +1,8 @@
 import { displayError } from './AlertError'
-import Portal from './Portal'
 import type { Portal as PortalType, Room } from '../types'
 import RoomObjects from './RoomObjects'
 import { $settings } from '../utils/store'
+import GameObject from './GameObject'
 
 export default function Room({ room }: { room: Room }) {
   if (room) {
@@ -16,7 +16,12 @@ export default function Room({ room }: { room: Room }) {
       >
         {room.objects && <RoomObjects objects={room.objects} />}
         {room.portals?.map((p: PortalType) => (
-          <Portal key={'portal-' + p.destination} {...p} />
+          <GameObject
+            key={'portal-' + p.destination}
+            id={p.destination}
+            portalDestination={p.destination}
+            {...p}
+          />
         ))}
       </div>
     )

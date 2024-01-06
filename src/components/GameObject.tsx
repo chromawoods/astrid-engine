@@ -1,16 +1,58 @@
 import type { GameEventId, GameObject } from '../types'
-import { $currentInteraction, $selectedInventoryItem } from '../utils/store'
+import {
+  $currentInteraction,
+  $currentViewId,
+  $selectedInventoryItem,
+} from '../utils/store'
 import { useStore } from '@nanostores/react'
 import fireEvent from '../modules/event'
-import { resetInteraction } from '../modules/interaction'
+import { handleLook, resetInteraction } from '../modules/interaction'
+import { getTextByKey } from '../modules/dialog'
+import { displayTextBox } from './TextBox'
 
 export default function GameObject(props: GameObject) {
-  const { id, name, image, ghost } = props
+  const {
+    id,
+    name,
+    description,
+    image,
+    ghost,
+    portalDestination,
+    isInInventory,
+  } = props
   const currentInteraction = useStore($currentInteraction)
   const selectedInventoryItem = useStore($selectedInventoryItem)
 
+  function handlePortalInteraction() {
+    if (selectedInventoryItem) {
+      displayTextBox({
+        text: [(getTextByKey('defaults.useItem') as string) || ''],
+        duration: true,
+        prioritized: true,
+      })
+      $selectedInventoryItem.set(null)
+    } else {
+      switch (currentInteraction) {
+        case 'look':
+          handleLook(description)
+          break
+        default:
+          fireEvent({
+            id: 'leaveRoom',
+            data: [$currentViewId.get(), portalDestination as string],
+          })
+      }
+      resetInteraction()
+    }
+  }
+
   function handleClick() {
     if (ghost) {
+      return
+    }
+
+    if (portalDestination) {
+      handlePortalInteraction()
       return
     }
 
@@ -20,12 +62,14 @@ export default function GameObject(props: GameObject) {
         data: [selectedInventoryItem.id, id],
       })
       $selectedInventoryItem.set(null)
-    } else {
+    } else if (isInInventory && !currentInteraction) {
       fireEvent({
-        id:
-          props.isInInventory && !currentInteraction
-            ? 'use'
-            : (currentInteraction as GameEventId),
+        id: 'use',
+        data: [id],
+      })
+    } else if (currentInteraction) {
+      fireEvent({
+        id: currentInteraction as GameEventId,
         data: [id],
       })
     }
@@ -35,7 +79,9 @@ export default function GameObject(props: GameObject) {
 
   return (
     <div
-      className={`ae-game-object ${id} ${ghost ? 'is-ghost' : ''}`}
+      className={`ae-game-object ${id} ${ghost ? 'is-ghost' : ''} ${
+        portalDestination ? 'is-portal' : ''
+      }`}
       style={{
         width: props.width,
         height: props.height || 'auto',
@@ -54,7 +100,7 @@ export default function GameObject(props: GameObject) {
       {image && (
         <img
           className='ae-game-object-image'
-          src={props.isInInventory ? image.inventory : image.default}
+          src={isInInventory ? image.inventory : image.default}
         />
       )}
     </div>

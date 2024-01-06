@@ -111,10 +111,6 @@ body {
   height: auto;
 }
 
-.ae-portal {
-  position: absolute;
-}
-
 .ae-debug:before {
   content: 'Press d to toggle debug view elements';
   position: absolute;
@@ -126,7 +122,7 @@ body {
 }
 
 .ae-debug-view .ae-game-object,
-.ae-debug-view .ae-portal {
+.ae-debug-view {
   box-shadow: 0 0 0 1px magenta;
 }
 
