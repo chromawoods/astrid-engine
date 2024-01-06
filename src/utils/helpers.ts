@@ -31,12 +31,7 @@ export function getValueByKeyPath(obj: DeepObj, path: string): any {
   const elems = path.split('.')
   const currentKey = elems.shift()
 
-  if (
-    currentKey &&
-    elems.length === 0 &&
-    obj.hasOwnProperty(currentKey) &&
-    typeof obj[currentKey] === 'string'
-  ) {
+  if (currentKey && elems.length === 0 && obj.hasOwnProperty(currentKey)) {
     return obj[currentKey]
   }
 
@@ -45,4 +40,8 @@ export function getValueByKeyPath(obj: DeepObj, path: string): any {
   }
 
   return ''
+}
+
+export function getRandomElement(arr: any[]) {
+  return arr[Math.floor(Math.random() * arr.length)]
 }

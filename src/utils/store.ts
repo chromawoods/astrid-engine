@@ -5,15 +5,14 @@ import {
   type Rooms,
   type GameObjects,
   type View,
-  type Room,
   type GameObject,
 } from '../types'
 import { atom, deepMap, map } from 'nanostores'
 
 export const $settings = map<GameSettings>({
   dataFileType: 'yaml',
-  canvasWidth: 800,
-  canvasHeight: 512,
+  canvasWidth: 960,
+  canvasHeight: 540,
   gameTitle: '',
   entryRoomId: '',
   defaultBackground: '#333333',

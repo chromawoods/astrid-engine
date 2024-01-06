@@ -5,12 +5,12 @@ import {
   showGameObject,
   updateGameObject,
 } from '../utils/storeHelpers'
+import { getRandomElement, sleep } from '../utils/helpers'
 
 import type { UserAction } from '../types'
 import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
 import { getTextByKey } from './dialog'
-import { sleep } from '../utils/helpers'
 
 export default async function handleUserAction(action: UserAction) {
   switch (action.id) {
@@ -25,6 +25,16 @@ export default async function handleUserAction(action: UserAction) {
     case 'printKey':
       displayTextBox({
         text: getTextByKey(action.data[0] as string),
+        duration: true,
+        prioritized: true,
+      })
+      break
+
+    case 'printRandomKey':
+      displayTextBox({
+        text: getRandomElement(
+          getTextByKey(action.data[0] as string) as string[]
+        ),
         duration: true,
         prioritized: true,
       })

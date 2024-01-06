@@ -1,4 +1,10 @@
-import type { GameObjects, Scenario, ScenarioData, UserAction } from '../types'
+import type {
+  GameObjects,
+  Scenario,
+  ScenarioData,
+  UserAction,
+  UserActionId,
+} from '../types'
 import GlobalLoadingState, { setLoadingState } from './GlobalLoadingState'
 import { getGameData, getSettings } from '../modules/dataFetcher'
 import { useEffect, useState } from 'react'
@@ -46,7 +52,7 @@ function normalizeScenarioData(obj: ScenarioData[]): Scenario[] {
     const actions: UserAction[] = s.actions
       ? s.actions.map((a) => {
           const actionParams = a.split(' ')
-          const actionId = actionParams.shift()
+          const actionId = actionParams.shift() as UserActionId
           if (actionId === 'print') {
             return {
               id: actionId,

@@ -31,13 +31,13 @@ export type GameEvent = {
 export type UserActionId =
   | 'print'
   | 'printKey'
+  | 'printRandomKey'
   | 'hideObject'
   | 'showObject'
   | 'delay'
   | 'goToRoom'
   | 'ghost'
   | 'unghost'
-  | 'gotoRoom'
 
 export type UserAction = {
   id: UserActionId

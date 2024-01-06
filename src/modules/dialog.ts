@@ -9,7 +9,7 @@ const $dialog = map<DeepObj>({ defaults: {} })
 
 export const setDialog = (dialogData: DeepObj) => $dialog.set(dialogData)
 
-export function getTextByKey(key: string): string {
+export function getTextByKey(key: string): string | string[] {
   return getValueByKeyPath($dialog.get(), key)
 }
 
