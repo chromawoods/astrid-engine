@@ -16,6 +16,34 @@ objects:
     height: 100
     x: 200
     y: 330
+  stairs:
+    name: Stairs
+    description: That's weird. Those stairs don't lead anywhere. Whatever's on the other side is not accessible from here anymore.
+    width: 130
+    height: 130
+    x: 250
+    y: 140
+  noose:
+    name: Noose
+    description: That looks menacing. Just like the majority of things in here.
+    width: 30
+    height: 100
+    x: 130
+    y: 100
+  flickeringLamp:
+    name: Flickering Lamp
+    description: Whoever put me here was at least kind enough to leave a light.
+    width: 50
+    height: 80
+    x: 440
+    y: 60
+  stuff:
+    name: Stuff
+    description: Useless junk.
+    width: 140
+    height: 80
+    x: 80
+    y: 220
   baseballBat:
     name: Wooden Baseball Bat
     description: Ah, nothing like a good ol' bat. Swing away!
@@ -46,9 +74,7 @@ rooms:
     name: The Basement
     background: rooms/basement.jpg
     objects:
-      - spider
-      - baseballBat
-      - basementBox
+      [spider, baseballBat, basementBox, stairs, stuff, noose, flickeringLamp]
     portals:
       - name: Way out
         description: Seems to be the only exit.
@@ -61,8 +87,7 @@ rooms:
     id: attic
     name: Spooky Attic
     background: rooms/attic.jpg
-    objects:
-      - chest
+    objects: [chest]
     portals:
       - width: 300
         height: 100
