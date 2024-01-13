@@ -6,12 +6,14 @@ objects:
     description:
       It's formidable in size, but would surely not withstand a good hit.
       Not gonna use my hands for that, though!
+    room: basement
     width: 60
     x: 590
     y: 385
     image: objects/spider.webp
   basementBox:
     name: Cabinet
+    room: basement
     width: 90
     height: 100
     x: 200
@@ -19,6 +21,7 @@ objects:
   stairs:
     name: Stairs
     description: That's weird. Those stairs don't lead anywhere. Whatever's on the other side is not accessible from here anymore.
+    room: basement
     width: 130
     height: 130
     x: 250
@@ -26,6 +29,7 @@ objects:
   noose:
     name: Noose
     description: That looks menacing. Just like the majority of things in here.
+    room: basement
     width: 30
     height: 100
     x: 130
@@ -33,6 +37,7 @@ objects:
   flickeringLamp:
     name: Flickering Lamp
     description: Whoever put me here was at least kind enough to leave a light.
+    room: basement
     width: 50
     height: 80
     x: 440
@@ -40,6 +45,7 @@ objects:
   stuff:
     name: Stuff
     description: Useless junk.
+    room: basement
     width: 140
     height: 80
     x: 80
@@ -47,14 +53,26 @@ objects:
   baseballBat:
     name: Wooden Baseball Bat
     description: Ah, nothing like a good ol' bat. Swing away!
+    room: basement
     width: 150
-    x: 580
-    y: 280
+    x: 280
+    y: 390
     image:
       default: objects/baseball-bat.png
       inventory: objects/baseball-bat-inventory.png
     collectable: true
     hidden: true
+  dogBowl:
+    name: Dog Bowl
+    room: basement
+    width: 30
+    height: 20
+    x: 800
+    y: 440
+  brassKey:
+    name: Brass Key
+    description: Now that's a proper key.
+    image: objects/brass-key.png
   letter:
     name: Old letter
     description: I found it my pocket when I woke up. It's written in some weird language. I can't read it.
@@ -63,6 +81,7 @@ objects:
   chest:
     name: Chest
     description: It's locked...//What a surprise.
+    room: attic
     width: 100
     x: 430
     y: 300
@@ -73,8 +92,6 @@ rooms:
   basement:
     name: The Basement
     background: rooms/basement.jpg
-    objects:
-      [spider, baseballBat, basementBox, stairs, stuff, noose, flickeringLamp]
     portals:
       - name: Way out
         description: Seems to be the only exit.
@@ -82,12 +99,21 @@ rooms:
         height: 170
         x: 660
         y: 110
-        destination: attic
+        destination: basementHallway
+  basementHallway:
+    name: Basement Hallway
+    background: rooms/basement-hallway.jpg
+    portals:
+      - name: Basement
+        destination: basement
+        width: 90
+        height: 460
+        x: 850
+        y: 10
   attic:
     id: attic
     name: Spooky Attic
     background: rooms/attic.jpg
-    objects: [chest]
     portals:
       - width: 300
         height: 100
@@ -106,6 +132,10 @@ scenarios:
       - hideObject basementBox
       - showObject baseballBat
       - print Well well well, what have we here?
+  - event: look dogBowl
+    actions:
+      - collect brassKey
+      - print Whoa! A key!
   - event: use spider
     repeat: true
     actions:
@@ -120,17 +150,13 @@ scenarios:
       - print Take that!
       - hideObject spider
       - hideObject baseballBat
-  - event: enterRoom attic
-    isCheckpoint: enterAttic
-    actions:
-      - print Not as cold as the basement, but still chill-inducing.
+  - event: enterRoom basementHallway
+    isCheckpoint: enterBasementHallway
   - event: enterRoom basement
-    requiresCheckpoint: enterAttic
+    requiresCheckpoint: enterBasementHallway
     repeat: true
     actions:
-      - printRandom
-        - Oh no why did I go back down here?
-        - Yep - still creepy in here.
+      - printRandomKey actions.enterBasement
 
 # Describe dialog
 dialog:
@@ -142,3 +168,6 @@ dialog:
     useSpider:
       - Are you insane? I'm not going to touch it with my bare hands.
       - Very funny. I'm not petting that monster!
+    enterBasement:
+      - Oh no why did I go back in here?
+      - Yep - still creepy in here.
