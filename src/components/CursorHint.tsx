@@ -41,15 +41,17 @@ export default function CursorHint(props: CursorProps) {
     props.containerRef?.current?.addEventListener(
       'mousemove',
       (event: MouseEvent) => {
-        const containerRect =
-          props.containerRef?.current?.getBoundingClientRect() || {
-            top: 0,
-            left: 0,
-          }
-        setCoords({
-          top: event.clientY - parseInt(containerRect.top.toString()),
-          left: event.clientX - containerRect.left,
-        })
+        if (cursorImage || $settings.get().debug) {
+          const containerRect =
+            props.containerRef?.current?.getBoundingClientRect() || {
+              top: 0,
+              left: 0,
+            }
+          setCoords({
+            top: event.clientY - parseInt(containerRect.top.toString()),
+            left: event.clientX - containerRect.left,
+          })
+        }
       }
     )
   }, [])
