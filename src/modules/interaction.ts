@@ -7,7 +7,7 @@ import { displayTextBox } from '../components/TextBox'
 import { getTextByKey } from './dialog'
 import { info } from '../utils/logger'
 
-function collect(gameObject: GameObject) {
+export function collect(gameObject: GameObject) {
   gameObject.isInInventory = true
   updateGameObject(gameObject)
 }
