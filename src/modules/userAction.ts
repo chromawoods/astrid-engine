@@ -1,3 +1,4 @@
+import type { GameObject, UserAction } from '../types'
 import {
   getGameObject,
   goToAnotherRoom,
@@ -7,7 +8,7 @@ import {
 } from '../utils/storeHelpers'
 import { getRandomElement, sleep } from '../utils/helpers'
 
-import type { UserAction } from '../types'
+import { collect } from './interaction'
 import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
 import { getTextByKey } from './dialog'
@@ -70,6 +71,11 @@ export default async function handleUserAction(action: UserAction) {
 
     case 'goToRoom':
       goToAnotherRoom(action.data[0] as string)
+      break
+
+    case 'collect':
+      const toCollect = getGameObject(action.data[0] as string)
+      toCollect && collect(toCollect)
       break
 
     default:
