@@ -102,6 +102,10 @@ body {
   z-index: 10;
 }
 
+.ae-game-object.is-portal {
+  z-index: 9;
+}
+
 .ae-game-object.is-ghost {
   z-index: 8;
 }
