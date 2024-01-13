@@ -58,9 +58,11 @@ export default async function handleScenario(event: GameEvent) {
   if (scenario) {
     $ongoingScenario.set(true)
 
-    scenario.actions &&
-      scenario.actions.length &&
-      (await iterateScenarioActions([...scenario.actions]))
+    if (scenario.actions && scenario.actions.length) {
+      await iterateScenarioActions([...scenario.actions])
+    } else {
+      $ongoingScenario.set(false)
+    }
 
     if (scenario.isCheckpoint) {
       info('checkpoint reached', scenario.isCheckpoint)
