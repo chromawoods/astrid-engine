@@ -88,3 +88,8 @@ export function goToAnotherRoom(roomId: string) {
   clearTextBox(true)
   $nextView.set(roomId)
 }
+
+export function getRoomObjects(roomId: string) {
+  const objects = $gameObjects.get()
+  return Object.values(objects).filter((o) => o.room === roomId)
+}

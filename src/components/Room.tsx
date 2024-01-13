@@ -1,11 +1,16 @@
 import { displayError } from './AlertError'
 import type { Portal as PortalType, Room } from '../types'
-import RoomObjects from './RoomObjects'
-import { $settings } from '../utils/store'
+import { $gameObjects, $settings } from '../utils/store'
 import GameObject from './GameObject'
+import { useStore } from '@nanostores/react'
 
 export default function Room({ room }: { room: Room }) {
   if (room) {
+    const allObjects = useStore($gameObjects)
+    const roomObjects = Object.values(allObjects).filter(
+      (obj) => obj.room === room.id && !obj.hidden && !obj.isInInventory
+    )
+
     return (
       <div
         className={`ae-room ${room.id}`}
@@ -14,7 +19,9 @@ export default function Room({ room }: { room: Room }) {
             'url(' + $settings.get().imageDir + room.background + ')',
         }}
       >
-        {room.objects && <RoomObjects objects={room.objects} />}
+        {roomObjects.map((ro) => (
+          <GameObject key={ro.id} {...ro} />
+        ))}
         {room.portals?.map((p: PortalType) => (
           <GameObject
             key={'portal-' + p.destination}

@@ -38,6 +38,7 @@ export type UserActionId =
   | 'goToRoom'
   | 'ghost'
   | 'unghost'
+  | 'collect'
 
 export type UserAction = {
   id: UserActionId
@@ -91,6 +92,7 @@ export type GameObject = {
   width?: number
   height?: number
   image?: GameObjectImage
+  room?: string
   portalDestination?: string
   ghost?: boolean
   name?: string
