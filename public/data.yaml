@@ -65,10 +65,10 @@ objects:
   dogBowl:
     name: Dog Bowl
     room: basement
-    width: 30
-    height: 20
-    x: 800
-    y: 440
+    width: 35
+    height: 25
+    x: 795
+    y: 435
   brassKey:
     name: Brass Key
     description: Now that's a proper key.

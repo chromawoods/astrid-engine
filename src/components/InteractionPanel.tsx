@@ -11,16 +11,16 @@ export default function InteractionPanel() {
         <div
           key={'interaction-' + i}
           className='ae-interaction'
-          style={{
-            backgroundImage: `url(${
-              $settings.get().imageDir
-            }interactions/${i}.png)`,
-          }}
           onClick={() => {
             info('interaction selected:', i)
             $currentInteraction.set(i)
           }}
-        ></div>
+        >
+          <img
+            className='ae-interaction-image'
+            src={`${$settings.get().imageDir}interactions/${i}.png`}
+          />
+        </div>
       ))}
     </div>
   )
