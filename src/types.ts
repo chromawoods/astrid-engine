@@ -96,7 +96,8 @@ export type GameObject = {
   portalDestination?: string
   ghost?: boolean
   name?: string
-  description?: string
+  textLook?: string
+  textUse?: string
   collectable?: boolean
   hidden?: boolean
   isInInventory?: boolean

@@ -52,12 +52,13 @@ body {
 
 .ae-cursor-hint {
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   margin-top: -16px;
   margin-left: 10px;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   z-index: 30;
 }
 

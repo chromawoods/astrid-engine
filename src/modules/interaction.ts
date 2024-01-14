@@ -32,7 +32,7 @@ export default function doInteraction(event: GameEvent) {
 
   switch (event.id) {
     case 'look':
-      handleLook(gameObject.description)
+      handleLook(gameObject.textLook)
       break
     case 'use':
       if (gameObject.isInInventory) {
@@ -41,7 +41,11 @@ export default function doInteraction(event: GameEvent) {
         collect(gameObject)
       } else {
         displayTextBox({
-          text: [(getTextByKey('defaults.use') as string) || ''],
+          text: [
+            gameObject.textUse ||
+              (getTextByKey('defaults.use') as string) ||
+              '',
+          ],
           duration: true,
           prioritized: true,
         })

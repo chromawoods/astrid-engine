@@ -11,15 +11,8 @@ import { getTextByKey } from '../modules/dialog'
 import { displayTextBox } from './TextBox'
 
 export default function GameObject(props: GameObject) {
-  const {
-    id,
-    name,
-    description,
-    image,
-    ghost,
-    portalDestination,
-    isInInventory,
-  } = props
+  const { id, name, textLook, image, ghost, portalDestination, isInInventory } =
+    props
   const currentInteraction = useStore($currentInteraction)
   const selectedInventoryItem = useStore($selectedInventoryItem)
 
@@ -34,7 +27,7 @@ export default function GameObject(props: GameObject) {
     } else {
       switch (currentInteraction) {
         case 'look':
-          handleLook(description)
+          handleLook(textLook)
           break
         default:
           fireEvent({

@@ -3,7 +3,7 @@
 objects:
   spider:
     name: Huge Spider
-    description:
+    textLook:
       It's formidable in size, but would surely not withstand a good hit.
       Not gonna use my hands for that, though!
     room: basement
@@ -20,7 +20,7 @@ objects:
     y: 330
   stairs:
     name: Stairs
-    description: That's weird. Those stairs don't lead anywhere. Whatever's on the other side is not accessible from here anymore.
+    textLook: That's weird. Those stairs don't lead anywhere. Whatever's on the other side is not accessible from here anymore.
     room: basement
     width: 130
     height: 130
@@ -28,7 +28,8 @@ objects:
     y: 140
   noose:
     name: Noose
-    description: That looks menacing. Just like the majority of things in here.
+    textLook: That looks menacing. Just like the majority of things in here.
+    textUse: I'm not going to hang myself just yet...
     room: basement
     width: 30
     height: 100
@@ -36,7 +37,7 @@ objects:
     y: 100
   flickeringLamp:
     name: Flickering Lamp
-    description: Whoever put me here was at least kind enough to leave a light.
+    textLook: Whoever put me here was at least kind enough to leave a light.
     room: basement
     width: 50
     height: 80
@@ -44,7 +45,7 @@ objects:
     y: 60
   stuff:
     name: Stuff
-    description: Useless junk.
+    textLook: Useless junk.
     room: basement
     width: 140
     height: 80
@@ -52,7 +53,7 @@ objects:
     y: 220
   baseballBat:
     name: Wooden Baseball Bat
-    description: Ah, nothing like a good ol' bat. Swing away!
+    textLook: Ah, nothing like a good ol' bat. Swing away!
     room: basement
     width: 150
     x: 280
@@ -71,16 +72,16 @@ objects:
     y: 435
   brassKey:
     name: Brass Key
-    description: Now that's a proper key.
+    textLook: Now that's a proper key.
     image: objects/brass-key.png
   letter:
     name: Old letter
-    description: I found it my pocket when I woke up. It's written in some weird language. I can't read it.
+    textLook: I found it my pocket when I woke up. It's written in some weird language. I can't read it.
     image: objects/letter.png
     isInInventory: true
   chest:
     name: Chest
-    description: It's locked...//What a surprise.
+    textLook: It's locked...//What a surprise.
     room: attic
     width: 100
     x: 430
@@ -94,7 +95,7 @@ rooms:
     background: rooms/basement.jpg
     portals:
       - name: Way out
-        description: Seems to be the only exit.
+        textLook: Seems to be the only exit.
         width: 100
         height: 170
         x: 660
