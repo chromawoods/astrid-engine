@@ -65,6 +65,11 @@ export default function GameObject(props: GameObject) {
         id: currentInteraction as GameEventId,
         data: [id],
       })
+    } else {
+      fireEvent({
+        id: 'nonInteractiveClick',
+        data: [id],
+      })
     }
 
     resetInteraction()

@@ -24,6 +24,8 @@ export default function handleGameAction(event: GameEvent) {
 
     case 'enterRoom':
       break
+    case 'nonInteractiveClick':
+      break
 
     case 'useItem':
       if (event.data[0] !== event.data[1]) {

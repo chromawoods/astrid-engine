@@ -18,6 +18,7 @@ export type GameEventId =
   | 'collect'
   | 'look'
   | 'use'
+  | 'nonInteractiveClick'
   | 'useItem'
   | 'talk'
   | 'hoverObject'
