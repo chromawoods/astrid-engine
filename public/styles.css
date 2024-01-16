@@ -52,8 +52,8 @@ body {
 
 .ae-cursor-hint {
   position: absolute;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   margin-top: -16px;
   margin-left: 10px;
   background-size: cover;

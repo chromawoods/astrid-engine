@@ -92,7 +92,7 @@ objects:
   letter:
     name: Old letter
     textLook: I found it my pocket when I woke up. It's written in some weird language. I can't read it.
-    image: objects/letter.png
+    image: objects/letter.jpg
     isInInventory: true
   chest:
     name: Chest
