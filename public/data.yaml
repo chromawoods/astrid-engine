@@ -160,6 +160,10 @@ scenarios:
     actions:
       - collect brassKey
       - print Whoa! A key!
+  - event: look spider
+    repeat: true
+    actions:
+      - playSound spider-hiss.mp3
   - event: use spider
     repeat: true
     actions:
