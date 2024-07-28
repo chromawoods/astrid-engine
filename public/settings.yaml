@@ -6,3 +6,4 @@ interactionTypes:
   - look
   - use
 dialogFont: Boogaloo-Regular.ttf
+useSfx: true

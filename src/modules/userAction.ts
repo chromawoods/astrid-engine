@@ -1,4 +1,3 @@
-import type { GameObject, UserAction } from '../types'
 import {
   getGameObject,
   goToAnotherRoom,
@@ -8,10 +7,12 @@ import {
 } from '../utils/storeHelpers'
 import { getRandomElement, sleep } from '../utils/helpers'
 
+import type { UserAction } from '../types'
 import { collect } from './interaction'
 import { displayError } from '../components/AlertError'
 import { displayTextBox } from '../components/TextBox'
 import { getTextByKey } from './dialog'
+import { playSound } from './soundHandler'
 
 export default async function handleUserAction(action: UserAction) {
   switch (action.id) {
@@ -76,6 +77,10 @@ export default async function handleUserAction(action: UserAction) {
     case 'collect':
       const toCollect = getGameObject(action.data[0] as string)
       toCollect && collect(toCollect)
+      break
+
+    case 'playSound':
+      action.data[0] && playSound(action.data[0] as string)
       break
 
     default:

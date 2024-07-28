@@ -18,6 +18,8 @@ export const $settings = map<GameSettings>({
   defaultBackground: '#333333',
   interactionTypes: ['look', 'use'],
   imageDir: 'images/',
+  soundDir: 'sounds/',
+  useSfx: true,
 })
 
 export const $gameObjects = deepMap<GameObjects>({})

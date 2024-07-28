@@ -40,6 +40,7 @@ export type UserActionId =
   | 'ghost'
   | 'unghost'
   | 'collect'
+  | 'playSound'
 
 export type UserAction = {
   id: UserActionId
@@ -73,7 +74,9 @@ export type GameSettings = {
   entryRoomId: string
   gameTitle: string
   imageDir: string
+  soundDir: string
   interactionTypes: Interaction[]
+  useSfx: boolean
   dialogFont?: string
   headingFont?: string
   dataFileType?: 'yaml' | 'json'
