@@ -3,9 +3,6 @@
 objects:
   spider:
     name: Huge Spider
-    textLook:
-      It's formidable in size, but would surely not withstand a good hit.
-      Not gonna use my hands for that, though!
     room: basement
     width: 60
     x: 590
@@ -163,6 +160,7 @@ scenarios:
   - event: look spider
     repeat: true
     actions:
+      - print It's formidable in size, but would surely not withstand a good hit. Not gonna use my hands for that, though!
       - playSound spider-hiss.mp3
   - event: use spider
     repeat: true
