@@ -17,8 +17,7 @@ export const $settings = map<GameSettings>({
   entryRoomId: '',
   defaultBackground: '#333333',
   interactionTypes: ['look', 'use'],
-  imageDir: 'images/',
-  soundDir: 'sounds/',
+  baseDir: '.',
   useSfx: true,
 })
 

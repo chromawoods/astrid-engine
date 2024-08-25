@@ -21,7 +21,7 @@ export default function Game() {
       {settings.dialogFont && (
         <link
           rel='preload'
-          href={`./fonts/${settings.dialogFont}`}
+          href={`${settings.baseDir}/fonts/${settings.dialogFont}`}
           as='font'
           crossOrigin='anonymous'
         />
@@ -29,7 +29,7 @@ export default function Game() {
       {settings.headingFont && (
         <link
           rel='preload'
-          href={`./fonts/${settings.headingFont}`}
+          href={`${settings.baseDir}/fonts/${settings.headingFont}`}
           as='font'
           crossOrigin='anonymous'
         />
@@ -39,12 +39,12 @@ export default function Game() {
         {settings.dialogFont &&
           `@font-face {
           font-family: "dialog";
-          src: url("./fonts/${settings.dialogFont}");
+          src: url("${settings.baseDir}/fonts/${settings.dialogFont}");
         }`}
         {settings.headingFont &&
           `@font-face {
           font-family: "heading";
-          src: url("./fonts/${settings.headingFont}");
+          src: url("${settings.baseDir}/fonts/${settings.headingFont}");
         }`}
       </style>
 

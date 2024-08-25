@@ -73,8 +73,7 @@ export type GameSettings = {
   canvasWidth: number
   entryRoomId: string
   gameTitle: string
-  imageDir: string
-  soundDir: string
+  baseDir: string
   interactionTypes: Interaction[]
   useSfx: boolean
   dialogFont?: string

@@ -18,7 +18,7 @@ export default function InteractionPanel() {
         >
           <img
             className='ae-interaction-image'
-            src={`${$settings.get().imageDir}interactions/${i}.png`}
+            src={`${$settings.get().baseDir}/images/interactions/${i}.png`}
           />
         </div>
       ))}
