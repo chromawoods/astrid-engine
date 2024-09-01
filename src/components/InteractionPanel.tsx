@@ -2,7 +2,7 @@ import { $currentInteraction, $settings } from '../utils/store'
 
 import { info } from '../utils/logger'
 
-const interactionTypes = $settings.get().interactionTypes
+const { imageDir, interactionTypes } = $settings.get()
 
 export default function InteractionPanel() {
   return (
@@ -18,7 +18,7 @@ export default function InteractionPanel() {
         >
           <img
             className='ae-interaction-image'
-            src={`${$settings.get().baseDir}/images/interactions/${i}.png`}
+            src={`${imageDir}/interactions/${i}.png`}
           />
         </div>
       ))}

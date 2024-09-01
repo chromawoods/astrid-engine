@@ -16,7 +16,7 @@ export function playSound(sound: string) {
   )
 
   if (channel) {
-    channel.src = soundDir + sound
+    channel.src = `${soundDir}/${sound}`
     channel.play()
   }
 }

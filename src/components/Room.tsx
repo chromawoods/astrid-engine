@@ -7,7 +7,7 @@ import { useStore } from '@nanostores/react'
 export default function Room({ room }: { room: Room }) {
   if (room) {
     const allObjects = useStore($gameObjects)
-    const imageDir = $settings.get().baseDir + '/images/'
+    const imageDir = $settings.get().imageDir
     const roomObjects = Object.values(allObjects).filter(
       (obj) => obj.room === room.id && !obj.hidden && !obj.isInInventory
     )
@@ -16,7 +16,7 @@ export default function Room({ room }: { room: Room }) {
       <div
         className={`ae-room ${room.id}`}
         style={{
-          backgroundImage: `url(${imageDir}${room.background})`,
+          backgroundImage: `url(${imageDir}/${room.background})`,
         }}
       >
         {roomObjects.map((ro) => (

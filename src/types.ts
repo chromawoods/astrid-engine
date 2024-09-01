@@ -69,12 +69,14 @@ export type ScenarioData = Omit<Scenario, 'event' | 'actions'> & {
 }
 
 export type GameSettings = {
+  baseDir: string
   canvasHeight: number
   canvasWidth: number
   entryRoomId: string
   gameTitle: string
-  baseDir: string
+  imageDir: string
   interactionTypes: Interaction[]
+  soundDir: string
   useSfx: boolean
   dialogFont?: string
   headingFont?: string

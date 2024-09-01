@@ -19,7 +19,7 @@ const setCursorImage = (image: string) => $cursorImage.set(image)
 $currentInteraction.listen((ci) => {
   if (!$selectedInventoryItem.get()) {
     setCursorImage(
-      !ci ? '' : `${$settings.get().imageDir}interactions/${ci}.png`
+      !ci ? '' : `${$settings.get().imageDir}/interactions/${ci}.png`
     )
   }
 })

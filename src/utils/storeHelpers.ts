@@ -5,6 +5,7 @@ import {
   $nextView,
   $rooms,
   $selectedInventoryItem,
+  $settings,
 } from './store'
 import type { GameData, GameObject, Room } from '../types'
 

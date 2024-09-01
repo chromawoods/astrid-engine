@@ -9,12 +9,12 @@ type LogEntry = {
 const logs: LogEntry[] = []
 
 const handleLog = (log: LogEntry) => {
-  const settings = $settings.get()
+  const { debug } = $settings.get()
 
   log.message = (log.severity === 'error' ? 'ERROR: ' : '') + log.message
   logs.push(log)
 
-  if (settings.debug) {
+  if (debug) {
     typeof log.data !== 'undefined'
       ? console[log.severity](log.message, log.data)
       : console[log.severity](log.message)

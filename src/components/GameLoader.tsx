@@ -19,7 +19,7 @@ import { setGameData } from '../utils/storeHelpers'
 setLoadingState(true)
 
 function normalizeGameObjects(obj: GameObjects) {
-  const imageDir = $settings.get().baseDir + '/images/'
+  const imageDir = $settings.get().imageDir + '/'
 
   for (const prop in obj) {
     const gameObject = obj[prop]
